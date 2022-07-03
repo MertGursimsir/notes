@@ -1,0 +1,52 @@
+sorted(("Ahmet","Þebnem","Mehmet","Ziya","Ýsmail","Ümit"))
+|
+['Ahmet', 'Mehmet', 'Ziya', 'Ümit', 'Ýsmail', 'Þebnem']
+
+Türkçe alfabeye göre sýralama yapmak için yerellik ayarý yapmalýyýz. Bunun için locale modülünü yüklemeli, ardýndan da sorted fonksiyonuna key parametresi olarak locale.strxfrm fonksiyonunu vermeliyiz.
+
+import locale
+locale.setlocale(locale.LC_ALL, ("tr", 'UTF-8'))
+sorted(("Ahmet","Þebnem","Mehmet","Ziya","Ýsmail","Ümit"), key=locale.strxfrm)
+|
+['Ahmet', 'Ýsmail', 'Mehmet', 'Þebnem', 'Ümit', 'Ziya']
+
+
+SAYILARI TÜRK STANDARTLARINDA BÝÇÝMLENDÝRMEK
+--------------------------------------------
+import locale
+loc = locale.getlocale()
+locale.setlocale(locale.LC_ALL,"tr_TR.UTF-8")
+|
+'tr_TR.UTF-8'
+
+
+Yerelleþtirme ayarlarýný yapsak da, bu ayarlar str.format metodunu etkilemeyecektir. Bunun yerine, locale.format fonksiyonunu kullanmalýyýz. Bu fonksiyonun dize biçimleme sintaksý eski usül olarak bilinir. Basit bir örnek olarak:
+
+locale.format("%f", 1234567.89, grouping=True)
+|
+'1.234.567,890000'
+
+
+
+Þimdi de virgülden sonra 3 hane olmak üzere toplam 13 karakterlik yer ayýrarak biçimlendirelim.
+
+locale.format("%013.3f", 1234567.89, grouping=True)
+|
+'001.234.567,890'
+
+
+
+
+
+locale.format() sadece bir tek biçim dizesi alýr (%f veya %d gibi). Daha geniþ bir kalýp kullanmak için locale.format_string() fonksiyonunu kullanmamýz gerekir.
+
+isimler = ["Ziya", "Meral", "Hüsamettin", "Zebercet"]
+boylar = [1.42, 1.50, 1.74, 1.81]
+maaþlar = [100.73, 5555.62, 12446.43, 2300.12]
+for i, b, m in zip(isimler, boylar, maaþlar):
+    print(locale.format_string("Ýsim: %-12s Boy: %6.2f Maaþ: %10.2f", (i,b,m), grouping=True))
+|
+Ýsim: Ziya Boy: 1,42 Maaþ: 100,73
+Ýsim: Meral Boy: 1,50 Maaþ: 5.555,62
+Ýsim: Hüsamettin Boy: 1,74 Maaþ: 12.446,43
+Ýsim: Zebercet Boy: 1,81 Maaþ: 2.300,12

@@ -1,0 +1,30 @@
+Machine Language dediğimiz bir dil var. Makine sadece 1'lerden ve 0'lardan anlar. Bunun sebebi işlemcilerin yapısı ve içerisinde bulundurdukları transistör dediğimiz elektrik yükü alan veya almayan parçacıklardan oluşmasından kaynaklı ama aslında olay şu: 
+
+Biz kodlarımızı High Level Language dediğimiz Python, Java, Swift, Kotlin gibi modern programlama dilleri ile yazıyoruz ama aslında bu diller Assembly dediğimiz bir ara forma dönüştürülüyor ve bu Assembly dili de makine diline dönüştürülüp bu şekilde işlem yapılır.
+
+1'ler ve 0'lardan oluşan kod yazmak çok zor. Çok karmaşık programlar kullanılıyor günümüzde pek mümkün değil.
+Assembly ile kod yazmak da çok zor. C dili ortaya çıkmadan önce insanlar bu dille oyun bile yazarlardı. Şu an da yazabilirsin ama artık diller bize bu işlemleri kolaylaştırıyor.
+
+***Günlük hayatta decimal yani onluk sistem kullanırız.
+
+215 = 5 * 10^0  +  1 * 10^1  +  2 * 10^2
+
+514 = 4 * 10^0  +  1 * 10^1  +  5 * 10^2
+ 10 rakam olduğu için 10 üzeri alıyoruz
+
+Binary ---> İkilik sistem. 
+
+1101101 = 1 * 2^6  +  1 * 2^5  +  0 * 2^4  +  1 * 2^3  +  1 * 2^2  +  0 * 2^1  +  1 * 2^0
+             64    +    32     +      0    +     8     +     4     +     0     +    1     = 109
+2 rakam olduğu için 2 üzeri alıyoruz 
+Decimal'dan verimsiz.
+Decimal'dan verimli yazabileceğimiz bir sistem var: 
+
+Hexadecimal ---> 16'lık sistem
+                 0 1 2 3 4 5 6 7 8 9  A  B  C  D  E  F
+                                     10 11 12 13 14 15
+A4F6 = 10 * 16^3  +  4 * 16^2  +  15 * 16^1  +  6 * 16^0
+         40960    +    1024    +    240      +     6     = 42230
+
+
+Assembly kodları hexadecimal olarak gösterilebilir, binary olarak da gösterilebilir.

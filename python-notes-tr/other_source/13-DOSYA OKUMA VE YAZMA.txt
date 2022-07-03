@@ -1,0 +1,429 @@
+%%writefile deneme.txt
+Ey Turk Gencligi!
+Birinci vazifen,
+Turk istiklalini, Turk Cumhuriyeti'ni,
+ilelebet muhafaza ve mudafaa etmektir.
+|
+Overwriting deneme.txt
+
+
+Bir dosyayý açmak için open() fonksiyonunu kullanýrýz. En basit halinde open() mevcut bir metin dosyasýný okumak için açar ve bir dosya nesnesi döndürür.
+
+f = open("deneme.txt")
+
+Dosya nesnesinin read() metodu dosya içeriðini tek bir dize halinde döndürür.
+
+f.read()
+|
+"Ey Turk Gencligi!\nBirinci vazifen,\nTurk istiklalini, Turk Cumhuriyeti'ni,\nilelebet muhafaza ve mudafaa etmektir.\n"
+
+
+Açýlmýþ dosyalarla iþimiz bittiðinde kapatmamýz gerekir, yoksa bellekte birikip yer iþgal edebilirler.
+
+f.close()
+
+f = open("deneme.txt")
+f.readlines()
+|
+['Ey Turk Gencligi!\n',
+ 'Birinci vazifen,\n',
+ "Turk istiklalini, Turk Cumhuriyeti'ni,\n",
+ 'ilelebet muhafaza ve mudafaa etmektir.\n']
+
+f.close()
+
+Bir dosya nesnesi bir iteratördür; bütün dosyayý bir kerede belleðe yüklemez, ama talep geldikçe satýrlarý birer birer verir. readline() metodu dosyadaki mevcut satýrý okumak için kullanýlýr. Her yeni readline() çaðrýsý bir sonraki satýrý getirir.
+
+f = open("deneme.txt")
+f.readline()
+|
+'Ey Turk Gencligi!\n'
+
+f.readline()
+|
+'Birinci vazifen, \n'
+
+f.readline()
+f.readline()
+|
+'ilelebet muhafaza ve mudafaa etmektir.\n'
+
+
+
+f = open("deneme.txt")
+f.readline()
+|
+'Ey Turk Gencligi!\n'
+
+f.readline()
+|
+'Birinci vazifen, \n'
+
+for satýr in f:
+    print(satýr.upper(),end="")
+f.close()
+|
+TÜRK ISTIKLÂLINI, TÜRK CUMHURIYETI'NI, 
+ILELEBET MUHAFAZA VE MÜDAFAA ETMEKTIR.
+
+
+
+WITH ... AS
+-----------
+Yukarýda, dosyayý open() ile açtýktan sonra close() metoduyla kapatmak gerektiðini söyledik. Bu basit bir kural olsa da, karmaþýk programlar içinde gözden kaçabiliyor. Dosya açma/kapama iþlemini daha düzenli hale getirmek için Python programcýlarý context manager denen bir yapý kullanýrlar. Bir context manager oluþturmak için with komutu kullanýlýr.
+
+with open("deneme.txt") as f:
+    print(f.read())
+|
+Ey Turk Gencligi!
+Birinci vazifen,
+Turk istiklalini, Turk Cumhuriyeti'ni,
+ilelebet muhafaza ve mudafaa etmektir.
+
+with bloðu bitince dosya otomatik olarak kapanýr.
+
+f.closed
+|
+True
+
+
+with open("deneme.txt") as f:
+    print(f.readline())
+|
+Ey Turk Gencligi!
+
+f.closed
+|
+True
+
+
+
+DOSYAYA YAZMAK
+--------------
+Bir dosyaya yazmak için open() fonksiyonunda "w" (write) modunu kullanýrýz.
+
+f=open("deneme2.txt","w")
+
+Bu komutla, mevcut dizinde deneme2.txt dosyasý yoksa yaratýlýr, varsa mevcut içeriði silinip üstüne yeni veri yazýlýr. Açýlan dosyaya bir dize yazmak için write() metodu kullanýlýr.
+
+f.write("ABCDE\n")
+f.write("123456\n")
+f.write("wxyz\n")
+f.close()
+
+Dosyayý açarak, veya %cat sihirini kullanarak içeriðine bakabiliriz.
+
+%cat deneme2.txt
+|
+ABCDE
+123456
+wxyz
+
+f=open("deneme2.txt")
+f.readline()
+|
+'ABCDE\n'
+
+
+
+Aynýsýný bir context manager ile de yapabiliriz:
+
+with open("deneme2.txt", "w") as f:
+    f.write("ABCDE\n")
+    f.write("123456\n")
+    f.write("wxyz\n")
+
+Dosyada mevcut bulunan verileri silmeden, yeni verilerin dosyanýn altýna eklenmesini istersek dosyayý "a" (append) modunda açmalýyýz.
+
+with open("deneme2.txt", "a") as f:
+    f.write("Yeni satýr 1\n")
+    f.write("Yeni satýr 2\n")
+
+f=open("deneme2.txt")
+f.readlines()
+|
+['ABCDE\n', '123456\n', 'wxyz\n', 'Yeni satýr 1\n', 'Yeni satýr 2\n']
+
+
+
+CSV DOSYA BÝÇÝMÝ
+----------------
+Bir çok veri dosyasýnda veriler tablo halinde, her satýrda bir kayýt ve her sütunda o kayda ait bir alan olacak þekilde düzenlenmiþlerdir.
+
+Alanlar birbirlerinden boþlukla, virgülle, veya baþka bir karakterle ayrýlabilir. Bu tür bir dosya düzenine CSV (comma-separated values, virgülle ayrýlmýþ deðerler) adý verilir.
+
+CSV biçimindeki dosyalarý okumak için yukarýda açýkladýðýmýz genel yöntemleri kullanmak mümkünse de, Python’un csv modülü iþleri basitleþtirir. 
+
+Sözgeliþi MS Excel ve benzeri bir hesap tablosunu CSV biçiminde kaydedip, verileri Python ile okuyabilirsiniz; veya Python’la üretilen verileri CSV dosyasý olarak kaydedip hesap tablosu uygulamasýyla açabilirsiniz.
+
+
+%%writefile ornek.csv
+"Potter, H",37,"Londra, Ýngiltere"
+"Granger, H",36,"Sydney, Avustralya"
+"Weasley, Bill",45,"Bükreþ, Romanya"
+|
+Overwriting ornek.csv
+
+(Bu örnekte isim ve adres alaný deðerlerinin týrnak içinde yazýldýðýna dikkat edin. Eðer týrnak kullanýlmasaydý, alanlarý virgülle ayýrma kuralý bize "Potter", "H", 37, "Londra", "Ýngiltere" gibi beþ ayrý alan verirdi.)
+
+
+Bir CSV dosyasýný açtýktan sonra, csv modülündeki reader() fonksiyonunu kullanarak onu satýr satýr okuyacak bir iteratör nesnesi yaratýrýz. Sonra bu iteratör nesnesi üzerinde bir döngüyle dosyayý tarayabiliriz.
+
+import csv
+with open("ornek.csv") as f:
+    okur = csv.reader(f)
+    for satýr in okur:
+        print(satýr)
+|
+['Potter, H', '37', 'Londra, Ýngiltere']
+['Granger, H', '36', 'Sydney, Avustralya']
+['Weasley, Bill', '45', 'Bükreþ, Romanya']
+
+
+Veya dosyamýzda alan ayýrýcý olarak boþluk karakteri, alan gruplama için bölü iþareti (/) kullanýlmýþ olabilir. Bu durumda reader() fonksiyonundaki delimiter ve quotechar parametrelerini deðiþtirerek dosyayý doðru þekilde alabiliriz.
+
+%%writefile ornek2.csv
+/Potter, H/ 37 /Londra, Ýngiltere/
+/Granger, H/ 36 /Sydney, Avustralya/
+/Weasley, Bill/ 45 /Bükreþ, Romanya/
+|
+Overwriting ornek2.csv
+
+
+with open("ornek2.csv") as f:
+    okur = csv.reader(f, delimiter=" ", quotechar="/")
+    for satýr in okur:
+        print(satýr)
+|
+['Potter, H', '37', 'Londra, Ýngiltere']
+['Granger, H', '36', 'Sydney, Avustralya']
+['Weasley, Bill', '45', 'Bükreþ, Romanya']
+
+Görüldüðü gibi, bir CSV dosyasýnda alan ayýrma, gruplama, satýr sonu karakterleri için farklý tercihler olabilir. Her bir tercih kümesine bir lehçe (dialect) adý veriliyor. csv.reader() için varsayýlan lehçe olan "excel", MS Excel ile üretilen CSV dosyalarýný okumaya ayarlýdýr. Ancak yukarýda gördüðümüz gibi bu tercihler kolaylýkla deðiþtirilebilir.
+
+Eðer özel bir CSV biçimini sýk sýk kullanýyorsanýz, o lehçeye özel bir Dialect nesnesi oluþturup reader() ile birlikte kullanabilirsiniz.
+
+
+
+Elimizdeki verileri bir CSV dosyasýna yazmak için önce csv modülünün writer() fonksiyonuyla bir yazýcý nesnesi yaratýrýz. Yazýcý nesnesi verilen veriyi kullanýlan “lehçe”ye uygun þekilde bir dizeye dönüþtürür ve dosyaya yazar. Yazýlacak dosyayý open() ile açarken newline="" parametresi vermemiz gerekir.
+
+Yazýcý nesnesinin writerow() metodu yazýlacak satýrý bir liste olarak alýr.
+
+
+with open("ornek3.csv", "w", newline="") as f:
+    yazýcý = csv.writer(f)
+    yazýcý.writerow(['Potter, H', '37', 'Londra, Ýngiltere'])
+    yazýcý.writerow(['Granger, H', '36', 'Sydney, Avustralya'])
+
+
+
+with open("ornek3.csv") as f:
+    oku=csv.reader(f)
+    for satýr in f:
+        print(satýr)
+|
+"Potter, H",37,"Londra, Ýngiltere"
+
+"Granger, H",36,"Sydney, Avustralya"
+
+
+****AYRINTI:  CSV dosyalarýný veri analizi paketi pandas ile de okumak ve yazmak mümkündür. Pandas ile CSV okumak hem daha basittir, hem de csv modülünde bulunmayan sözgeliþi veri içindeki yorumlarý elemek, sadece istenen sütunlarý almak gibi ince ayarlara da imkan verir.
+
+Pandas’ýn read_csv() fonksiyonu dosyanýn içeriðini bir veri çerçevesi olarak okur; ardýndan bu veri çerçevesinden çeþitli satýrlar veya sütunlar alýnabilir.
+
+
+
+DÝÐER DOSYA FORMATLARI
+||||||||||||||||||||||
+Birçok dosya biçimi için Python’da özelleþmiþ kütüphaneler vardýr. Bunlarýn bazýlarýna deðinelim.
+
+
+JSON
+----
+Birçok internet hizmeti API’si, sorgulama sonuçlarýný JSON biçiminde bir dosya olarak verir.
+Python standart kütüphanesindeki json modülü, JSON biçimli bir dosyayý okuyup bir Python sözlük veya listesine dönüþtüren, ve Python nesnelerinden JSON biçimli bir dosya oluþturan fonksiyonlarý içerir.
+
+
+%%writefile yalanci_veri.json
+[{
+  "id": 1,
+  "first_name": "Fredia",
+  "last_name": "Waith",
+  "email": "fwaith0@tamu.edu"
+}, {
+  "id": 2,
+  "first_name": "Rafaello",
+  "last_name": "Rowthorn",
+  "email": "rrowthorn1@stanford.edu"
+}, {
+  "id": 3,
+  "first_name": "Harriette",
+  "last_name": "Patters",
+  "email": "hpatters2@samsung.com"
+}]
+|
+Writing yalanci_veri.json
+
+
+import json
+with open("yalanci_veri.json") as f:
+    yalanciveriler=json.load(f)
+
+f=open("yalanci_veri.json")
+f.readlines()
+|
+['[{\n',
+ '  "id": 1,\n',
+ '  "first_name": "Fredia",\n',
+ '  "last_name": "Waith",\n',
+ '  "email": "fwaith0@tamu.edu"\n',
+ '}, {\n',
+ '  "id": 2,\n',
+ '  "first_name": "Rafaello",\n',
+ '  "last_name": "Rowthorn",\n',
+ '  "email": "rrowthorn1@stanford.edu"\n',
+ '}, {\n',
+ '  "id": 3,\n',
+ '  "first_name": "Harriette",\n',
+ '  "last_name": "Patters",\n',
+ '  "email": "hpatters2@samsung.com"\n',
+ '}]\n']
+
+
+Bu iþlem sonucunda bir sözlükler listesi elde etmiþ oluruz. Bilindik indeksleme iþlemleriyle tek tek elemanlara ulaþabiliriz.
+
+
+yalanciveriler[1]["first_name"], yalanciveriler[1]["email"]
+|
+('Rafaello', 'rrowthorn1@stanford.edu')
+
+
+yalanciveriler.append(
+{
+  "id": 4,
+  "first_name": "Giffer",
+  "last_name": "Dur",
+  "email": "gdur2@cnbc.com"
+})
+
+
+yalanciveriler
+|
+[{'id': 1,
+  'first_name': 'Fredia',
+  'last_name': 'Waith',
+  'email': 'fwaith0@tamu.edu'},
+ {'id': 2,
+  'first_name': 'Rafaello',
+  'last_name': 'Rowthorn',
+  'email': 'rrowthorn1@stanford.edu'},
+ {'id': 3,
+  'first_name': 'Harriette',
+  'last_name': 'Patters',
+  'email': 'hpatters2@samsung.com'},
+ {'id': 4,
+  'first_name': 'Giffer',
+  'last_name': 'Dur',
+  'email': 'gdur2@cnbc.com'}]
+
+
+Nesnenin yeni halini json.dump() ile dosyaya yazalým.
+
+with open("yalanci_veri.json", "w") as f:
+    json.dump(yalanciveriler,f)
+
+
+
+
+HTML
+----
+HTML dosyalarý zaten düz metinden oluþtuðu için onlarý okumakta teknik bir zorluk yok. HTML iþlemede asýl istenen þey parsing, yani çeþitli HTML elemanlarýna eriþebilmektir. Söz geliþi, bir HTML’deki baðlantýlarý almak, tablo veriyi okumak gibi iþlemler yapmamýz gerekebilir.
+
+
+EXCEL
+-----
+MS Excel dosyalarýný CSV olarak kaydederseniz CSV okuma/yazma kýsmýndaki yöntemleri kullanabilirsiniz. Bunu istemiyorsanýz, veya tablodaki verileriniz bu iþleme uygun deðilse, veya birden fazla yapraktan oluþuyorsa, Excel dosyasýný doðrudan açmak için xlrd modülünü kullanabilirsiniz.
+
+Daha geniþ özelliklere sahip bir paket olan pyexcel ile hem okuma hem de yazmayý daha kolay iþlemlerle yapabilirsiniz.
+
+Pandas paketinin read_excel() fonksiyonu ile bir Excel dosyasýný doðrudan okuyarak bir veri çerçevesi haline getirebilirsiniz. 
+
+
+WORD
+----
+MS Word belgelerinin içinden metin almak, belge yaratmak ve varolan belgeye içerik eklemek için python-docx modülü kullanýlabilir. 
+
+
+PDF
+---
+PDF dosyalarýndan bilgi almak, PDF dosyasý yaratmak, mevcut dosyada deðiþiklik yapmak gibi iþler için pyPDF2 modülünü kullanabilirsiniz.
+
+
+ZIP
+---
+Python standart kütüphanesindeki zipfile modülü, ZIP formatýnda sýkýþtýrma ve açma fonksiyonlarý saðlar.
+
+import zipfile
+with zipfile.ZipFile("arsiv.zip","w") as z:
+    z.write("deneme.txt")
+    z.write("yalanci_veri.json")
+
+
+Mevcut bir arþive bir dosya eklemek istiyorsak, ZipFile() fonksiyonunun açýlma modunu "w" yerine "a" yaparýz.
+
+ZipFile() fonksiyonu, yukarýda gördüðümüz open() gibi çalýþýr. Arþivi açmak için ZipFile() fonksiyonunu okuma modunda kullanýrýz, ve arþiv dosyasý nesnesine ait open() metoduyla dosyayý açarýz. Açýlan dosyanýn içeriði read(), readline() veya readlines() metodlarýyla okunabilir. Bu metodlar kodlanmýþ dizeler döndürdüðü için decode() dize metoduyla Unicode’a çevrilmelidir.
+
+with zipfile.ZipFile('arsiv.zip') as z:
+    with z.open('deneme.txt') as f:
+        print(f.read().decode("utf-8"))
+|
+Ey Türk Gençliði!
+Birinci vazifen, 
+Türk istiklâlini, Türk Cumhuriyeti'ni, 
+ilelebet muhafaza ve müdafaa etmektir.
+
+Bir ZIP arþivindeki bir dosyayý açarak diske kaydetmek için extract(), arþivdeki bütün dosyalarý açmak için extractall() fonksiyonlarý kullanabiliriz.
+
+
+
+DEÐÝÞKENLERÝMÝZÝ KAYDETMEK: PICKLE
+----------------------------------
+Bir oturumda hazýrladýðýnýz deðiþkenleri, oturumu kapattýðýnýzda kaybetmemek isterseniz bunlarý ikili (binary) bir veri yapýsý haline getirip diske kaydetmeniz gerekir. Bu iþi standart kütüphanedeki pickle modülü ile yapabilirsiniz. Neredeyse bütün Python nesnelerini (kendi tanýmladýðýmýz nesne sýnýflarý dahil) dosyaya kaydetmeniz ve sonra tekrar okumanýz mümkündür. Bu iþleme serialization adý verilir.
+
+
+x = 3.14159
+L = [1,3,2,5,4]
+D = {"abc": 123, "def": 456}
+def fon(x):
+    return x*x
+
+
+import pickle
+with open("data.p", "wb") as f:
+    pickle.dump(x,f)
+    pickle.dump(L,f)
+    pickle.dump(D,f)
+    pickle.dump(fon,f)
+
+
+Deðiþkenleri dosyadan okumak için load() fonksiyonunu kullanýrýz. Nesneler dosyaya konduklarý sýrayla geri alýnýrlar. Deðiþkenlerin orijinal adýný kullanmamýz gerekmez.
+
+with open("data.p", "rb") as f:
+    y = pickle.load(f)
+    print(y)
+    J = pickle.load(f)
+    print(J)
+    F = pickle.load(f)
+    print(F)
+    G = pickle.load(f)
+    print(G(y))
+|
+3.14159
+[1, 3, 2, 5, 4]
+{'abc': 123, 'def': 456}
+9.869587728099999
+
+
+Bazý nesneler pickle ile kaydedilemezler; að baðlantýlarý, veri tabaný baðlantýlarý, açýk dosya nesneleri gibi.
+
+Dikkat: pickle iþlemleri herhangi bir emniyet tedbiri içermez. Pickle dosyasýnýn içindeki nesne load() ile doðrudan doðruya çalýþtýrýlýr. Bu nesnenin içinde kötü amaçlý bir kod parçasý varsa sisteminize zarar gelebilir. Bu yüzden bilmediðiniz bir yerden gelen pickle dosyalarýný açmayýn.

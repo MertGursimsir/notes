@@ -1,0 +1,26 @@
+Elektrik devrelerinde direnç bir iletken üzerinden geçen elektrik akımının karşılaştığı zorlanmadır. Suyun geçtiği borunun darlığı veya genişliği olarak düşünülebilir.
+
+Mekanik sistemlerdeki sürtünmeye benzer özellikler gösterir.
+
+Direncin birimi Ohm (büyük omega)'dur. Denklemlerde R harfi ile gösterilir. Elektronik devrelerde direncin sembolü 2 farklı şekilde gösterilebilir:
+
+                                      ___________
+                                     |           |
+__  /\  /\  ___        YA DA      ---             ---
+  \/  \/  \/                         |___________|
+
+
+
+Direnç Çeşitleri
+----------------
+Karbon Dirençler: Toz halindeki karbon ve reçinenin ısıtılarak eritilmesi yolu ile elde edilir.
+                  Karışımdaki karbon oranı direncin değerini belirler.
+                  Renk kodları bu dirençler içindir.
+
+SMD (Yüzey Montaj) Direnç: Çok az yer gerektirdiği ve devre üstünde delik gerektirmediği için devre tasarlarken                           kullanılır.
+
+Potansiyometre (Ayarlı Direnç): Üzerindeki potu çevirerek direnç değiştirilir. 
+                                Sesi açılıp kısılırken bu direnç kullanılır.
+
+Ortam Koşullarına Göre Değişen Dirençler: Sıcaklık sensörü ve ışık sensörü örnek olarak verilebilir.
+                                          Aslında sensördür, sensör olma özelliklerini içlerindeki dirençlerle                                                 sağlarlar. Sıcaklık arttıkça veya ısı (etraftaki ışık) arttıkça direnç                                               değişir. Direnç değişiminden ortamdaki ışık seviyesini anlarız.

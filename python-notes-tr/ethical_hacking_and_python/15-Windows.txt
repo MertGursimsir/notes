@@ -1,0 +1,13 @@
+Python kodu yazabilmek için sublime text yükleyeceğiz.
+Bu kodları çalıştırmayı göreceğiz: python ______.py şeklinde çalışmıyor. Bunun için Python interpreter (Python yorumlayıcı) yüklememiz gerekir. Python kodu yazmaya değil, kodları derleyip kendi bilgisayarımızda çalıştırmayı güvence altına alırız.
+
+Windows sublime text'te yazdığımız hello.py'yi çalıştıracağız. 
+Bunu açmak için python.exe kullanacağız.
+python.exe'yi çağırmak için direkt exe yolunu kopyalayabilirsin ve bir boşluk bırakıp hello.py yazabilirsin.
+Yani python yazmak yerine python.exe dosyasının yolunu yazıyorsun.
+
+
+İndirdiğimiz python interpreter içinde pip install diyeceğimiz bir şey yok.
+O yüzden python.exe dosyasının yolunu yazıp ardından:   -m pip install pynput   şeklinde yükleyebilirsin.
+                                                                         |
+                                                                   kütüphane ismi

@@ -1,0 +1,106 @@
+lambda komutu ---> isimsiz ("anonymous" - belli bir isme baðlý olmayan) fonksiyonlar yaratýr.
+
+f = lambda x: x*x        =         def f(x): return x*x
+
+Python dinamik bir dildir. Bunun anlamý, verdiðimiz komutlarýn anýnda iþlenmesi, ve gerekli nesnelerin bellekte o anda yaratýlýyor olmasýdýr. 
+
+Python’daki her þey gibi fonksiyonlar da (yazýlým geliþtirmedeki anlamýyla) birer nesnedir. 
+Yukarýdaki lambda x: x*x ifadesi bellekte bir fonksiyon nesnesi yaratýr, ve bu nesne ile f ismi birbirine baðlanýr. 
+
+Öz olarak bunun s = "merhaba" komutundan farký yok; burada da önce bellekte "merhaba" deðerini tutan bir dize nesnesi yaratýlýr, sonra bu nesne s ismi ile eþleþtirilir.
+
+(lambda x: x*x)(1.2)
+|
+1.44
+
+
+lambdada komut bulunmaz - atama yapýlmaz - if, else, while, for kullanýlmaz
+sadece bir ifade ("expression", geriye bir deðer veren bir iþlem) bulunabilir
+lambda bir ifadedir, konduðu yerde bir fonksiyon nesnesi yaratýr, def bunu yapmaz
+fonksiyon alan fonksiyonlara verilen parametreler olarak kullanýþlýdýr
+
+
+
+
+
+L = [ 6.1, 2.3, -5.6, 8.5, 4.0, -1.2, -3.4, 7.8]
+sorted(L)
+|
+[-5.6, -3.4, -1.2, 2.3, 4.0, 6.1, 7.8, 8.5]
+
+
+sorted(L, key=abs)                                sorted(L, key=lambda x: x if x>0 else -x)
+|                                             =   |
+[-1.2, 2.3, -3.4, 4.0, -5.6, 6.1, 7.8, 8.5]       [-1.2, 2.3, -3.4, 4.0, -5.6, 6.1, 7.8, 8.5]
+
+
+
+
+
+L = [ [1, "merhaba"], [6, "hello"], [-2, "guten tag"] ]
+sorted(L)
+|
+[[-2, 'guten tag'], [1, 'merhaba'], [6, 'hello']]
+ÝLK ELEMANA GÖRE SIRALADI
+
+
+
+sorted(L, key = lambda i: i[1])
+|
+[[-2, 'guten tag'], [6, 'hello'], [1, 'merhaba']]
+ÝKÝNCÝ ELEMANA GÖRE SIRALADI
+
+
+
+
+
+integral bir fonksiyoneldir: fonksiyon alýr ve sayý verir.
+
+4 
+~(6x^3–4x^2)dx        ~:integral iþareti
+-2
+
+
+
+import scipy.integrate
+scipy.integrate.quad(lambda x: 6*x**3 - 4*x**2, -2, 4)
+(264.00000000000006, 3.703317987014864e-12)
+         |                    |
+      BELÝRLÝ              TAHMÝNÝ
+      ÝNTEGRALÝN           HATA
+      DEÐERÝ               MÝKTARI
+
+
+
+
+
+lambda bir fonksiyon nesnesi döndürür, def ise bir komuttur, bir deðer döndürmez. Bu yüzden lambda ile tanýmlanan isimsiz fonksiyonlarý baþka ifadelerin içine, söz geliþi atamalara veya fonksiyon parametrelerine yerleþtirebiliriz.
+
+
+Ýsimsiz fonksiyonlarla karmaþýk iþlemler yapýlamaz. Kýsa, bir seferlik kullan-at fonksiyonlar tanýmlamak için daha uygundurlar.
+
+
+Ýsimsiz fonksiyonlarla kodunuz daha okunaklý olabilir. Sýralama vb. iþlemlerde def ile farklý fonksiyonlar tanýmlamak isim alanýnýn bir sürü tek kullanýmlýk fonksiyon ismiyle dolmasýna sebep olur. Dahasý, kaynak kodunuz uzunsa, fonksiyonun tanýmlandýðý yer ile kullanýldýðý yer arasýnda kalan mesafe yüzünden, kodda ne yapýldýðýný anlamak için yukarý aþaðý kaydýrmak gerekebilir. Bu tür küçük iþlerde lambda ifadeleri kullanmak, fonksiyonun yapýsýný açýkça gösterdiði için kodun anlaþýlýrlýðýný artýrýr.
+
+
+
+f = lambda x, y: x+y
+f(4,5)
+|
+9
+
+
+
+g = lambda *p : sum(p)
+g(0.25, 2, 13)
+|
+15.25
+
+
+
+h = lambda x, n=2: x**n    # üst alma. Varsayýlan kuvvet 2.
+print(h(3))                # 3**2
+print(h(3,5))              # 3**5
+|
+9
+243

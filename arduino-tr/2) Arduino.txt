@@ -1,0 +1,29 @@
+Arduino bir mikrokontrolcüdür.
+Elektronik devrelerimizi yöneten bir beyindir.
+Biz yazılımımız vasıtasıyla bazı komutlar yazıp arduinoya yükleyeceğiz, arduinomuz da bizim elektronik devrelerimizi kurduğumuz robotumuzu hareket ettiriyor olacak.
+
+Breadboard 
+----------
+Prototiplemek için kullanırız.
+Yani breadboardumuza devre elemanlarımızı (Örneğin led, direnç vs.) yerleştireceğiz, bağlantılarımızı arduinoya yapacağız ve çalıştıracağız.
++ ve - 'ler satır olarak birbirine bağlıdır.
+Örneğin 1. - yere bir kablo bağladığında bunu son - yere bağlamış gibi olursun.
+Arduinodan 1. +'yere kablo çektiğinde o +'yı herhangi bir + yerden çekeceğin kabloyla alabilirsin.
+Diğer boşluklar da sütun olarak birbirine bağlıdır.
+
+
+void setup
+----------
+Bir kere yapılacak işlemleri yazarız.
+Örneğin ledimizi burada tanımlarız, hangi giriş çıkış pinine bağladığımızı söyleriz.
+
+
+void loop
+------- --
+Döngü oluştururuz.
+Örneğin ledimizi 1 saniye yakıp 1 saniye söndürme işlemini burada yaparız. Bu bir döngü olarak devam eder.
+
+
+
+***Potansiyometre: Çevirdiğinde direncin değeri artan ya da azalan bir component.
+                   Çevirdiğimizde ledimizin ışığı artıp azalacak.

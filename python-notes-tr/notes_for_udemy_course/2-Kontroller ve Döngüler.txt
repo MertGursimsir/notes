@@ -1,0 +1,743 @@
+COMPARISON
+||||||||||
+x=5
+y=4
+x>y --s+e-->True
+x<y --s+e-->False
+x>=y --s+e-->True
+x>=5.1 --s+e-->False
+x==y --s+e-->False
+x!=y --s+e-->True  ''x, y'ye eþit deðildir anlamýnda''
+ 
+x=y
+x --s+e-->4
+y --s+e-->4
+
+#And Or Not
+3>1 and 7<9 --s+e-->True
+4>1 and 3>4 --s+e-->False
+
+Eðer X mantýksal olarak yanlýþsa, Y ne olursa olsun bütün ifade yanlýþ olur, böylece X deðeri geri verilir. Ama X doðruysa, iþlemin doðruluk deðeri Y‘ye baðlýdýr, ve Y deðeri geri verilir.
+
+2 and 3
+3
+
+0 and 2
+0
+
+3>1 or 7<9 --s+e-->True
+4>1 or 3>4 --s+e-->True
+
+"abc" or print("mrb")
+'abc'
+
+False or print("mrb")
+'mrb'
+
+
+
+not kullanýnca true alacaðýn false, false alacaðýn true olur.
+not 10==10 --s+e-->False
+
+"hello" == "Hello", "hello" > "Hello", "hello" < "jello"
+(False, True, True)
+ALFABETÝK SIRA
+
+
+
+IF STATEMENTS
+|||||||||||||
+if 3>2:                                      BU 'ENTER'A BASINCA BIRAKILAN BOÞLUKLAR ÇOK ÖNEMLÝ! 
+    print("3 is greater than 2")             'ENTER'A BASINCA SENÝ BOÞLUK BIRAKIP (TAB KADAR) BAÞLATTIYSA GÝDÝP EN BAÞTAN BAÞLAMA!
+3 is greater than 2
+
+if 3<=3:
+    print("what's on your mind")
+    print("great song")
+what's on your mind
+great song
+    
+x=5
+y=4
+if x>y:                            BU
+    print("x is greater")          4 SATIR
+else:                              AYNI
+    print("y is greater")          IN ÝÇERÝSÝNDE.
+--s+e-->x is greater
+
+***Eðer if kýsmýna yazdýðýn doðruysa else kýsmý çalýþtýrýlmaz. If kýsmýna yazdýðýn yanlýþsa else kýsmý çalýþtýrýlýr.
+
+x=4
+y=4
+if x>y:
+    print("x is greater")
+elif x==y:
+    print("x is y")
+else:
+    print("y is greater")
+--s+e-->x is y
+
+***Araya elifleri (else if) istediðin kadar yazabilirsin.
+
+my_superhero=input("superhero:")
+superhero:Batman
+if my_superhero=="Batman":
+    print("Bat")
+elif my_superhero=="Superman":
+    print("Super")
+elif my_superhero=="Spiderman":
+    print("Spider")
+else:
+    print(":(")
+--s+e-->Bat
+
+
+a=10
+b=15
+c=20
+if a>b or b<c:
+    print("superman")    
+--s+e-->superman
+
+if not a<b:
+    print("1984")
+else:
+    print("2000")
+--s+e-->2000
+
+isdead=False
+if isdead==False:
+    print("character is alive")
+--s+e-->character is alive
+
+if isdead==True:
+    print("character is dead")
+else:
+    print("character is not dead")
+--s+e-->character is not dead
+
+if isdead:
+    print("character is dead")
+else:
+    print("character is not dead")
+--s+e-->character is not dead
+
+***==True falan yazmana gerek yok zaten doðruluðu direkt anlaþýlýyor.
+
+if not isdead:
+    print("character is not dead")
+else:
+    print("character is dead")
+--s+e-->character is not dead
+
+***Büyük küçük harfler önemli.
+
+my_string="Hello World"
+if "Hello" in my_string:
+    print("yes")
+else:
+    print("no")
+--s+e-->yes
+
+my_list=[1,2,3,4,5]
+if 2 in my_list:
+    print("yes")
+else:
+    print("no")
+--s+e-->yes
+
+my_dictionary={"key1":100,"key2":200,"key3":300}
+if 100 in my_dictionary.keys():
+    print("yes")
+else:
+    print("no")
+--s+e-->no
+
+if "key1" in my_dictionary.keys():
+    print("yes")
+else:
+    print("no")
+--s+e-->yes
+
+if 100 in my_dictionary.values():
+    print("yes")
+else:
+    print("no")
+--s+e-->yes
+
+
+
+
+
+
+d = {"abc": 54, (1,2): -45.1}                 SADECE
+"abc" in d, 54 in d, (1,2) in d               KEYLERE
+(True, False, True)                           BAKAR
+
+
+
+X = A or B or C or None
+|
+ÝKÝSÝ AYNI
+|
+if A:
+    X = A
+elif B:
+    X = B
+elif C:
+    X = C
+else:
+    X = None
+
+
+
+
+if x:
+    a = y
+else:
+    a = z
+|
+ÝKÝSÝ AYNI
+|
+a = y if x else z
+
+
+
+
+
+hedef = "42"
+tahmin = input("Tahmininiz: ")
+if tahmin == hedef:
+    print("Doðru!")
+|
+ÝKÝSÝ AYNI
+|
+hedef = "42"
+x = input("Tahmininiz: ")
+print("Doðru!" if x == hedef else "Yanlýþ")
+
+
+
+if rating > 100:
+    sinif = "A"
+elif rating > 50:
+    sinif = "B"
+else:
+    sinif = "C"
+|
+ÝKÝSÝ AYNI
+|
+sinif = "A" if rating > 100 else "B" if rating > 50 else "C"
+
+
+
+
+FOR LOOP
+||||||||
+
+LOOP DEMEMÝZÝN SEBEBÝ HER ELEMANDA KODUN BAÞTAN OKUNMASI. 
+
+my_list=[1,2,3,4,5]
+
+for number in my_list:
+    print("mert gursimsir")
+mert gursimsir
+mert gursimsir
+mert gursimsir
+mert gursimsir
+mert gursimsir
+
+for number in my_list:                        NUMBER YERÝNE ÝSTEDÝÐÝNÝ DÝYEBÝLÝRSÝN
+    print(number)                             NUMBER DEMEK LÝSTEDEKÝ ELEMANLARIN TÜMÜ DEMEK
+1
+2
+3
+4
+5
+
+for item in my_list:
+    new_number = item*5
+    print(new_number)
+5
+10
+15
+20
+25
+
+for kaktüs in my_list:
+    if kaktüs%2==0:
+        print(kaktüs)
+2
+4
+
+for no in my_list:
+    if no ==2:
+        print("yep")
+yep
+
+
+
+
+
+string="James Hetfield"
+
+for letter in string:
+    print(letter)
+J
+a
+m
+e
+s
+ 
+H
+e
+t
+f
+i
+e
+l
+d
+
+
+
+
+my_tuple=(1,2,3)
+
+for item in my_tuple:
+    print(item*5-10)
+-5
+0
+5
+
+
+
+
+MyList=[1,2,[3,4]]
+
+for element in MyList:
+    if type(element) is int:
+        print(element)
+    else:
+        for i in element:
+            print(i)
+1
+2
+3
+4
+
+
+
+
+my_new_list=[("a","b"),("c","d"),("e","f"),("g","h")]
+
+for deniz in my_new_list:
+    print(deniz)
+('a', 'b')
+('c', 'd')
+('e', 'f')
+('g', 'h')
+
+*EÐER LÝSTEDE TEK TÝP YAPI VARSA (SADECE TUPLE, SADECE STRÝNG VS.) ÞUNU YAPABÝLÝRSÝN ((x,y) yazarken parantezsiz x,y de yazabilirsin):
+for (x,y) in my_new_list:
+    print((x,y))
+('a', 'b')
+('c', 'd')
+('e', 'f')
+('g', 'h')
+
+for (x,y) in my_new_list:
+    print(x)
+a
+c
+e
+g
+
+for (x,y) in my_new_list:
+    print(x)
+    print(y)
+a
+b
+c
+d
+e
+f
+g
+h
+
+
+
+
+listem=[(0,1,2),(3,4,5),(9,10,11)]
+
+for (x,y,z) in listem:
+    print(z)
+2
+5
+11
+
+
+
+
+
+my_dictionary={"key1":100,"key2":200,"key3":300}
+
+my_dictionary.items()
+dict_items([('key1', 100), ('key2', 200), ('key3', 300)])
+
+for a,b in my_dictionary.items():
+    print(a)
+key1
+key2
+key3
+
+for a,b in my_dictionary.items():
+    print(b)
+100
+200
+300
+
+for a,b in my_dictionary.items():
+    print(b)
+    print(a)
+100
+key1
+200
+key2
+300
+key3
+
+for a,b in my_dictionary.items():
+    print(a)
+    print(b)
+key1
+100
+key2
+200
+key3
+300
+
+
+
+
+
+CONTINUE BREAK PASS
+|||||||||||||||||||
+my_list=[10,20,30,40,50,60]
+
+for no in my_list:
+    if no==30:
+        break
+    print(no*5)
+50
+100
+
+
+
+***BÖYLE YAZARSAN BÝR ÞEY OLMAZ.
+for no in my_list:
+    if no==30:
+        break
+        print(no*5)
+
+
+
+for item in my_list:
+    if item==30:
+        continue
+    print(item*5)
+50
+100
+200
+250
+300
+
+
+
+for num in my_list:
+  File "<ipython-input-16-4c5d859891fd>", line 1
+    for num in my_list:
+                       ^
+SyntaxError: unexpected EOF while parsing
+
+
+for num in my_list:
+    pass
+HATA YOK. BÝR ÞEY YAPMA DEVAM ET.
+
+
+WHILE LOOP
+||||||||||
+a=0
+
+while a<5:
+    print("hello")
+/SONSUZA KADAR hello YAZAR\
+
+
+while a<5:
+    print("hello")
+    a=a+1
+hello
+hello
+hello
+hello
+hello
+
+
+
+my_list=[1,2,3,4,5]
+
+while 3 in my_list:
+    print("3 in my list")
+/SONSUZA KADAR 3 in my list YAZAR\
+
+
+while 3 in my_list:
+    print("3 in my list")
+    my_list.pop()
+3 in my list
+3 in my list
+3 in my list
+
+
+
+
+number=0
+
+while number<10:
+    print(number)
+    number+=1               (number=number+1 demek)
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+while number<10:
+    if number==5:
+        break
+    print(number)
+    number+=1
+0
+1
+2
+3
+4
+
+
+
+
+p=0
+
+while p<20:
+    print(p)
+    p+=1
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+
+ 
+while p<20:
+    print("value p:" + str(p))
+    p+=1
+value p:0
+value p:1
+value p:2
+value p:3
+value p:4
+value p:5
+value p:6
+value p:7
+value p:8
+value p:9
+value p:10
+value p:11
+value p:12
+value p:13
+value p:14
+value p:15
+value p:16
+value p:17
+value p:18
+value p:19
+
+
+
+while p<20:
+    print(f"value p p p: {p}")
+    p+=1
+value p p p: 0
+value p p p: 1
+value p p p: 2
+value p p p: 3
+value p p p: 4
+value p p p: 5
+value p p p: 6
+value p p p: 7
+value p p p: 8
+value p p p: 9
+value p p p: 10
+value p p p: 11
+value p p p: 12
+value p p p: 13
+value p p p: 14
+value p p p: 15
+value p p p: 16
+value p p p: 17
+value p p p: 18
+value p p p: 19
+
+
+***f koyduktan sonra bir deðiþkeni bir string içinde yazdýrabilirsin.
+
+
+a=1
+b=10
+while a<b:                  ------> 1 2 3 4 5 6 7 8 9 
+    print(a, end=" ")
+    a += 1
+*!* end=" "  yazdýðýmýz için tek sýrada yazdý. Týrnak içinde boþluk býrakmasak: 123456789
+
+
+Döngü bloku üzerinden her bir geçiþe bir iterasyon deriz!!!
+
+
+
+1'DEN 10'A KADAR OLAN SAYILARIN TOPLAMI
+a=1
+b=10
+toplam=0
+while a<=b:
+    toplam += a
+    a += 1
+print(toplam)
+55
+
+
+p=1
+while p<=6:
+    a=1
+    b=10
+    toplam=0
+    while a<=b:
+        toplam += a**p
+        a += 1
+    print("p =",p,", 1^p + ... + 10^p =", toplam)
+    p += 1
+p = 1 , 1^p + ... + 10^p = 55
+p = 2 , 1^p + ... + 10^p = 385
+p = 3 , 1^p + ... + 10^p = 3025
+p = 4 , 1^p + ... + 10^p = 25333
+p = 5 , 1^p + ... + 10^p = 220825
+p = 6 , 1^p + ... + 10^p = 1978405
+
+YUKARIDA a=1 b=10 VE toplam=0 ÝÞLEMLERÝNÝ ÝLK WHILE DÖNGÜSÜNÜN ÝÇÝNE YAZDIK. DIÞINA YAZSAYDIK:
+
+p=1
+a=1
+b=10
+toplam=0
+while p<=6:
+    while a<=b:
+        toplam+=a**p
+        a+=1
+    print(f"p = {p},  1^p + 2^p + ... + 10^p = {toplam}")
+    p+=1
+p = 1,  1^p + 2^p + ... + 10^p = 55
+p = 2,  1^p + 2^p + ... + 10^p = 55
+p = 3,  1^p + 2^p + ... + 10^p = 55
+p = 4,  1^p + 2^p + ... + 10^p = 55
+p = 5,  1^p + 2^p + ... + 10^p = 55
+p = 6,  1^p + 2^p + ... + 10^p = 55
+
+YANÝ 2. a,b VE toplam GENEL OLDUÐU ÝÇÝN ÝLK WHILE DÖNGÜSÜNE BAKILMAYACAKTI.
+
+
+
+while <þart>:
+    <komutlar 1>
+else:
+    <komutlar 2>
+<komutlar 1> kýsmýnda bir break komutu çalýþtýrýlýrsa, döngünün else kýsmýný da atlar.
+döngü break ile bitmediði zaman else kýsmý da çalýþýr.
+
+
+
+x = int(input("Bir pozitif tamsayý girin: "))
+i = 2
+while i*i <= x:
+    if x % i == 0:
+        print("Asal deðil,", i, "böler.")
+        break
+    i += 1
+else:
+    print("Asal.")
+|
+SAYININ ASAL OLUP OLMADIÐINI BULMA
+|
+x=int(input("sayý: "))
+i=0
+for a in range(2,x):
+    if x%a==0:
+        i+=1
+        print(f" {a} böler")
+        break
+if i!=0:
+    print("asal deðil")
+else:
+    print("asal")
+
+
+
+
+
+data = [1,2,4,-1,3,4,-5,1]
+i = 0
+aranan = int(input("Aranan deðer: "))
+
+while i<len(data):
+    if data[i] == aranan:
+        print ("Aranan", aranan, "deðeri", i, "pozisyonunda.")
+        break;
+    i += 1
+else:
+    print("Bulamadýk")
+
+=
+
+data = [1,2,4,-1,3,4,-5,1]
+i = 0
+aranan = 3
+
+bulduk = False
+while i<len(data) and not bulduk:
+    if data[i] == aranan:
+        bulduk = True
+    else:
+        i += 1
+
+if bulduk:
+    print("Aranan", aranan, "deðeri", i, "pozisyonunda.")
+else:
+    print("Bulamadýk")

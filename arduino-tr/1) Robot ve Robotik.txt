@@ -1,0 +1,47 @@
+Robotun temel kısımları:
+------------------------
+-Robotun çevresindeki verileri algılayabilmesi için gerekli sensörler (alıcılar).
+-Verilerin toplanmasını ve kontrolü sağlayan elektronik devreler.
+-Bu sensör verilerini kullanarak robotun amacına uygun matematiksel ve mantıksal işlemler ile karar verme olayının gerçekleşmesini sağlayan bir program (yani robotun mikrodenetleyicilerine yüklenecek algoritma).
+-Verilen kararlar doğrultusunda gerekli hareketleri gerçekleştirebilecek bir mekanik düzenek.
+
+
+Robot diyebilmemiz için makinenin sınırlı da olsa dış dünyadan bazı algılar yapabilmesi gereklidir.
+Bu algılamalar kimyasal, ışık, şekil, renk ve konum olarak ana başlıklar halinde toparlanabilir.
+Robot daha sonra algılarla elde ettiği bu verileri otonom olarak yorumlayabilmeli ve algıya ne gibi bir tepki vermesi gerektiğine karar verebilmelidir.
+Son olarak da verdiği bu kararı uygulayabilmelidir. 
+
+
+KISACA ROBOT 3 ANA BÖLÜMDEN OLUŞMAKTADIR:
+
+1) Çevre hakkında gerçek zamanlı bilgi elde etmek amacıyla kullanılan alıcılar.
+2) Karar vermeyi ve kontrolü sağlayan elektronik beyin.
+3) Verilen kararların uygulamasını sağlayan hareket sistemleri.
+
+
+
+
+Robotik Nedir?
+--------------
+Bazı görevler için insanın yerini tamamen alabilecek, bazı görevler için ise insanlara yardım edebilecek sistemlerin hazırlanmasıyla ilgili çalışmaları kapsayan bilim dalıdır.
+
+
+
+
+Robotik Kodlama Nedir?
+----------------------
+Bir robotun hareketlerini kontrol etmek ve yönlendirmek için yapılan kodlamadır.
+Kodladığımız nesne bir robottur.
+
+
+
+
+Neden Arduino? - Arduino Nedir?
+-------------------------------
+Arduino bir mikrokontrolcüdür. Yani makinelerin beyni diyebiliriz.
+Aslında mikrokontrolcüler kodlaması ve programlaması çok zordur.
+Arduino'nun temel amacı mikrokontrolcüleri kolay programlanabilir ve kullanılabilir hale getirmektir.
+
+Arduino kolay kullanılabilir bir yazılım ve donanım mimarisine sahip, açık kaynak kodlu bir elektronik geliştirme kartıdır. 
+Açık kaynaklı demek, Arduino kartlarının devre tasarımları tamamen açık demektir ve isteyen istediği gibi üretip satabilir.
+Ayrıca yazılımı da açık kaynaktır. Arduino IDE ile geliştirme yapabilirsiniz.

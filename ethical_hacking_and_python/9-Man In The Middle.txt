@@ -1,9 +1,0 @@
-Aðdaki bütün cihazlarý haritalamayý, çýkarmayý baþardýk.
-
-Hackerlar bu aðdaki cihazlarý çýkarma iþlemini ortadaki adam denilen saldýrý için kullanabilir. 
-
-Normalde modeme bir istek yollarýz ve modemden cevap alýrýz. Modem bu istekleri interneti iletip cevabý alýp bize iletir.
-
-Hacker bilgisayar ARP response (cevap) oluþturur. Çünkü sistemde bir açýk var. Bu IP'ye sahip arkadaþ kim diye soruyorduk ve hepsine yollayýp o IP'ye sahip arkadaþ tarafýndan cevap alýyorduk. Açýk þudur ki: bu broadcast yayýn isteði olmasa bile cihazlar cevaplarý kabul eder. Bu yüzden hacker aracýmýzla gidip modeme: "Benim IP adresim þu (hedef cihazýn IP'si), MAC adresim de þu (kendi MAC adresimiz)." diye bir cevap yollayabiliriz ve modem de cevabý alýp doðru kabul eder. Hacker olarak kendi MAC adresimizi ve hedef cihazýn IP adresini verebiliriz. Bu IP'de bu MAC adresi var deriz. Sonra hacker olarak cihaza deriz ki: "Benim IP adresim þu (modeminkini söyleriz) MAC adresim de þu (kendimizinkini söyleriz)." diyerek modemin beni hedef cihaz sanmasýný ve cihazýn da beni modem sanmasýný saðlayabiliriz. 
-
-Ortadaki adam budur. Ýnternete çýkarken tüm istekleri kendi üzerimizden geçiririz ve ayný þekilde modeme bu istekleri iletebiliriz. Modemden gelen cevaplarý da kendimiz görebiliriz ve onu da hedefe iletiriz. Bunu yapmanýn amacý tüm internet paketlerini okuyabilmek. Hedef arkadaþýn internette nerede gezindiðini görebilmek, þifrelerini vs. çalabilmek. Hackerlar bizimle ayný aðda olduðu sürece bu iþlemleri yapabilirler. 

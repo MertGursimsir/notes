@@ -1,0 +1,24 @@
+ELEKTRİK, yüklü parçacıkların hareketi ile ilgili olan fiziksel olaylara verilen genel isimdir.
+Bu hareket iletken maddeler üzerinde gerçekleşebilir (örn. metaller). 
+Buna karşılık elektrik akımını taşıyacak serbest elektronlara sahip olmayan maddelere yalıtkan maddeler denir.
+
+
+ELEKTRİK DEVRESİ; direnç, kapasitör, transistör, anahtar, üreteç vb. devre elemanlarının birbirine bağlanarak oluşturdukları sisteme verilen addır.
+
+
+ELEKTRİK GERİLİMİ; akımın oluşması, yani elektronların hareketi için gerekli olan elektrik alan kuvvetidir. Elektrik akımının "akmasını" yani oluşmasını sağlar. Birimi Volt'tur. V harfi ile gösterilir. 
+Gerilimi (Volt) su seviyesinin yüksekliği olarak düşünebiliriz. Su yüksekliği ne kadar fazla olursa, akış o kadar şiddetli olacaktır. Yani gerilim yükseldikçe akacak olan akım şiddeti o kadar artacaktır.
+
+
+ELEKTRİK AKIMI, potansiyel fark (gerilim) etkisi sonucunda iletken bir madde üzerinden elektrik yüklerinin hareketi olarak tanımlanabilir. Hareket eden yükler, madde içerisindeki elektronlardır. Birimi Amper'dir (A). Denklemlerde I harfi ile ifade edilir.
+Elektrik devrelerinde asıl işi yapan akımdır. Gerilim akımın akmasını sağlar. Devremizi besleyecek olan pili veya güç kaynağını seçerken devrenin çekeceği en yüksek akımı düşünmemiz gerekir. 
+Geçen suyun hızıdır.
+
+
+ELEKTRİKSEL GÜÇ, birim zamanda yapılan enerji miktarını ifade eder. Gücün birimi watt'tır (W). Gücü çok basit şekilde devremizin çektiği akım ile gerilimi çarparak bulabiliriz:
+P = I x V    --->   P: Güç, I: Akım, V: Gerilim
+
+
+SİGORTA, kısa devre durumunda çoğunlukla devrenin herhangi bir hattından aşırı miktarda akım geçeceği için, bu durumu engellemek amacıyla kullanılır. Sigortalar, üzerlerinden aşırı miktarda akım geçtiği durumda fiziksel olarak devreyi açık devre haline getirerek bağlantıyı koparır ve aşırı akımdan oluşabilecek durumların engellenmesini sağlar. 
+
+*Kısa devrenin gerçekleşmesinin temel sebepleri ters kutuplu bağlama (örneğin pili ters takma), açık uçlu ve izolasyonu zedelenmiş kablolar ve bağlantı hatalarıdır.

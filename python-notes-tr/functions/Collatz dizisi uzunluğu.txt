@@ -1,0 +1,24 @@
+def collatz_uzunluk(n):
+    enbüyük = n
+    uzunluk = 0
+    while n > 1:
+        if n % 2==0:
+            n = n/2
+        else:
+            n = 3*n + 1
+
+        uzunluk += 1
+        if n > enbüyük:
+            enbüyük = n
+    return uzunluk, enbüyük
+
+
+
+
+
+for n0 in [11, 79]:
+    u, m = collatz_uzunluk(n0)
+    print("Baþlangýç = {}, dizi uzunluðu = {}, en büyük deðer = {}".format(n0, u, m))
+|
+Baþlangýç = 11, dizi uzunluðu = 14, en büyük deðer = 52.0
+Baþlangýç = 79, dizi uzunluðu = 35, en büyük deðer = 808.0

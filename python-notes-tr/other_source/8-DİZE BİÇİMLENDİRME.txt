@@ -1,0 +1,328 @@
+DÝZE BÝÇÝMLENDÝRME
+||||||||||||||||||
+
+Düzenlemeler, format() metoduyla beraber þu þekilde kullanýlýr:
+
+"<kalýp dizesi>".format(<deðerler>)
+
+
+Konumla Yerleþtirme ve Ýsimle Yerleþtirme
+-----------------------------------------
+
+"Ýsim: {}, Telefon: {}, Boy: {} m".format("Kaan", "5555", 1.80)
+|
+'Ýsim: Kaan, Telefon: 5555, Boy: 1.8 m'
+
+
+"Ýsim: {0}, Boy: {2} m, Telefon: {1}".format("Kaan", "5555", 1.80)
+|
+'Ýsim: Kaan, Boy: 1.8 m, Telefon: 5555'
+
+
+"Alýcý Adý: {isim}, Yaþý: {yaþ}, Þehir: {þehir}".format(yaþ=32, isim="Fatma", þehir="Tekirdað")
+|
+'Alýcý Adý: Fatma, Yaþý: 32, Þehir: Tekirdað'
+
+
+p = ("Kaan","5555",1.80)
+"Ýsim: {}, Telefon: {}, Boy: {} m".format(*p)
+|
+'Ýsim: Kaan, Telefon: 5555, Boy: 1.8 m'
+
+
+liste = [
+("Kaan","5555",1.80),
+("Meral","5628",1.50),
+("Ziya","9879",1.40)]
+for p in liste:
+    print("Ýsim: {0}, Boy: {2} m, Telefon: {1}".format(*p))
+|
+Ýsim: Kaan, Boy: 1.8 m, Telefon: 5555
+Ýsim: Meral, Boy: 1.5 m, Telefon: 5628
+Ýsim: Ziya, Boy: 1.4 m, Telefon: 9879
+
+
+
+D = dict(isim="Filiz", yaþ=55, þehir="Ýstanbul")
+"Alýcý Adý: {isim}, Yaþý: {yaþ}, Þehir: {þehir}".format(**D)
+|
+'Alýcý Adý: Filiz, Yaþý: 55, Þehir: Ýstanbul'
+
+
+liste = [
+{"isim": "Filiz", "yaþ":"55", "þehir":"Ýstanbul"},
+{"isim": "Meral", "yaþ":"40", "þehir":"Ankara"},
+{"isim": "Ziya", "yaþ":"10", "þehir":"Bursa"}
+]
+for D in liste:
+    print("Alýcý Adý: {isim}, Yaþý: {yaþ}, Þehir: {þehir}".format(**D))
+|
+Alýcý Adý: Filiz, Yaþý: 55, Þehir: Ýstanbul
+Alýcý Adý: Meral, Yaþý: 40, Þehir: Ankara
+Alýcý Adý: Ziya, Yaþý: 10, Þehir: Bursa
+
+
+
+
+
+listem = [3,6,7,9]
+"Ýlk eleman: {listem[0]}, son eleman: {listem[3]}".format(listem=listem)
+|
+'Ýlk eleman: 3, son eleman: 9'
+
+YA DA
+
+listem = [3,6,7,9]
+"Ýlk eleman: {0[0]}, son eleman: {0[3]}".format(listem)
+|
+'Ýlk eleman: 3, son eleman: 9'
+
+
+
+kayýt = {"isim":"Kaan", "boy":1.80, "telefon":"5555"}
+"Ýsim: {D[isim]}, Tel: {D[telefon]}, Boy: {D[boy]}".format(D=kayýt)
+|
+'Ýsim: Kaan, Tel: 5555, Boy: 1.8'
+
+
+
+Yana Yaslama ve Ortalama
+------------------------
+isimler = ["Ziya", "Meral", "Hüsamettin", "Zebercet"]
+yaþlar = [9, 32, 45, 28]
+þehirler = ["Ýstanbul", "Ankara", "Van", "Diyarbakýr"]
+for i, y, þ in zip(isimler, yaþlar, þehirler):
+    print("Alýcý Adý: {}, Yaþý: {}, Þehir: {}".format(i, y, þ))
+|
+Alýcý Adý: Ziya, Yaþý: 9, Þehir: Ýstanbul
+Alýcý Adý: Meral, Yaþý: 32, Þehir: Ankara
+Alýcý Adý: Hüsamettin, Yaþý: 45, Þehir: Van
+Alýcý Adý: Zebercet, Yaþý: 28, Þehir: Diyarbakýr
+
+
+
+Hizalýsý þöyle olur:
+Kalýp dizesinde yer tutucularý (mesela) {:10} biçiminde yazmakla 10 karakter geniþlikte bir alan ayýrmýþ oluruz. Aksi belirtilmedikçe dizeler sola, sayýlar ise saða yaslanýr.
+SAYILAR KENDÝNDEN ÖNCE BOÞLUK BIRAKIR.
+DÝZELER KENDÝNDEN SONRA BOÞLUK BIRAKIR.
+
+
+for i, y, þ in zip(isimler, yaþlar, þehirler):
+print("Alýcý Adý: {:11} Yaþý: {:3} Þehir: {:10}".format(i, y, þ))
+|
+Alýcý Adý: Ziya        Yaþý:  9 Þehir: Ýstanbul
+Alýcý Adý: Meral       Yaþý: 32 Þehir: Ankara
+Alýcý Adý: Hüsamettin  Yaþý: 45 Þehir: Van
+Alýcý Adý: Zebercet    Yaþý: 28 Þehir: Diyarbakýr
+
+
+
+for i, y, þ in zip(isimler, yaþlar, þehirler):
+    print("Alýcý Adý:{:10}Yaþ:{:2}Þehir:{:10}".format(i,y,þ))
+|
+Alýcý Adý:Ziya      Yaþ: 9Þehir:Ýstanbul  
+Alýcý Adý:Meral     Yaþ:32Þehir:Ankara    
+Alýcý Adý:HüsamettinYaþ:45Þehir:Van       
+Alýcý Adý:Zebercet  Yaþ:28Þehir:Diyarbakýr
+
+
+
+Sola yaslanmýþ olarak basmak için {:<10}, saða yaslanmýþ olarak basmak için {:>10}, ortalanmýþ olarak basmak içinse {:^10} yazýmý kullanýrýz.
+
+for i, y, þ in zip(isimler, yaþlar, þehirler):
+    print("Alýcý Adý: {:>11} Yaþý: {:<3} Þehir: {:^10}".format(i, y, þ))
+|
+Alýcý Adý:        Ziya Yaþý: 9  Þehir:  Ýstanbul
+Alýcý Adý:       Meral Yaþý: 32 Þehir:   Ankara
+Alýcý Adý:  Hüsamettin Yaþý: 45 Þehir:    Van
+Alýcý Adý:    Zebercet Yaþý: 28 Þehir: Diyarbakýr
+
+
+
+Boþ býrakýlan yerleri bir karakterle doldurmak istiyorsak, bu karakteri : iþaretinden hemen sonra koyarýz. Mesela, * iþaretiyle doldurmak için:
+
+for i in isimler:
+     print("{:*>11}".format(i))
+|
+*******Ziya
+******Meral
+*Hüsamettin
+***Zebercet
+
+
+
+Yer tutucularý indeksle veya isimle eþleþtirmek istediðimizde, iki nokta üstüste iþaretinden önce indeksi veya ismi yazarýz; {0:10} veya {isim:10} gibi.
+
+for i, y, þ in zip(isimler, yaþlar, þehirler):
+     print("{1:3} yaþýndaki {0:11} isimli alýcý {2:10} þehrinde oturuyor.".format(i, y, þ))
+|
+ 9 yaþýndaki Ziya        isimli alýcý Ýstanbul   þehrinde oturuyor.
+32 yaþýndaki Meral       isimli alýcý Ankara     þehrinde oturuyor.
+45 yaþýndaki Hüsamettin  isimli alýcý Van        þehrinde oturuyor.
+28 yaþýndaki Zebercet    isimli alýcý Diyarbakýr þehrinde oturuyor.
+
+
+
+for i, y, þ in zip(isimler, yaþlar, þehirler):
+    print("{yaþ:3} yaþýndaki {isim:11} isimli alýcý {þehir:10} þehrinde oturuyor.".format(isim=i, yaþ=y, þehir=þ))
+|
+ 9 yaþýndaki Ziya        isimli alýcý Ýstanbul   þehrinde oturuyor.
+32 yaþýndaki Meral       isimli alýcý Ankara     þehrinde oturuyor.
+45 yaþýndaki Hüsamettin  isimli alýcý Van        þehrinde oturuyor.
+28 yaþýndaki Zebercet    isimli alýcý Diyarbakýr þehrinde oturuyor.
+
+Direkt format kýsmýna y,i,þ yazýp {yaþ} {isim} {þehir} kýsmýna y,i,þ yazamazsýn.
+Þöyle yapabilirsin.
+
+for i, y, þ in zip(isimler, yaþlar, þehirler):
+    print("{y:3} yaþýndaki {i:11} isimli alýcý {þ:10} þehrinde oturuyor.".format(y=y,i=i,þ=þ))
+|
+  9 yaþýndaki Ziya        isimli alýcý Ýstanbul   þehrinde oturuyor.
+ 32 yaþýndaki Meral       isimli alýcý Ankara     þehrinde oturuyor.
+ 45 yaþýndaki Hüsamettin  isimli alýcý Van        þehrinde oturuyor.
+ 28 yaþýndaki Zebercet    isimli alýcý Diyarbakýr þehrinde oturuyor.
+
+
+
+Sayý Biçimlendirme
+------------------
+"Yaþ: {:d}, Boy: {:f}".format(42, 1.76)
+|
+'Yaþ: 42, Boy: 1.760000'
+
+
+Belli miktarda, söz geliþi 5 karakterlik yer ayýrmak için {:5d} yazýmýný kullanabiliriz. Ondalýklý sayýlar için {:5.2f} yazýmý, noktadan sonra 2 basamak olmak üzere en az 5 karakterlik yer ayrýlmasýný saðlar (ondalýk noktasý dahil).
+
+"Yaþ: {:5d}, Boy: {:5.2f}".format(42, 1.76)
+|
+'Yaþ:    42, Boy:  1.76'
+
+
+"Yaþ: {:5d}, Boy: {:5.1f}".format(42, 1.76)
+|
+'Yaþ:    42, Boy:   1.8'
+
+
+"Yaþ: {:5d}, Boy: {:5.0f}".format(42, 1.76)
+|
+'Yaþ:    42, Boy:     2'
+
+
+"Yaþ: {:5d}, Boy: {:5.10f}".format(42, 1.76)
+|
+'Yaþ:    42, Boy: 1.7600000000'
+
+
+
+Ayýrdýðýmýz alanda, sayýnýn deðerini deðiþtirmeden boþluklarýn sýfýrlarla doldurulmasýný istiyorsak {:05d} veya {:05.3f} gibi yazýmlar kullanýrýz.
+
+"Yaþ: {:05d}, Boy: {:06.3f}".format(42, 1.76)
+|
+'Yaþ: 00042, Boy: 01.760'
+
+
+Negatif sayýlarýn baþýna her zaman eksi gelir; pozitif sayýlarýn da her zaman artý ile baþlamasý için {:+d} yazýmýný kullanýrýz.
+
+"{:+d}, {:+d}".format(42, -45)
+|
+'+42, -45'
+
+
+
+Bir sayýyý ikili, sekizli, onaltýlý tabanda göstermek için sýrasýyla b, o, x kullanýrýz.
+
+print("Onluk tabanda {:d}\nÝkili tabanda {:b}\nSekizli tabanda {:o}\nOnaltýlý tabanda {:x}".format(42,42,42,42))
+|
+Onluk tabanda 42
+Ýkili tabanda 101010
+Sekizli tabanda 52
+Onaltýlý tabanda 2a
+
+
+Bu dönüþümleri yapýnca sayýnýn tabanýnýn da belli olmasýný istersek #b, #o, #x kullanýrýz. Bu kodlar sayýnýn baþýna sýrasýyla "0b", "0o", "0x" konmasýný saðlar.
+
+print("Onluk tabanda {:d}\nÝkili tabanda {:#b}\nSekizli tabanda {:#o}\nOnaltýlý tabanda {:#x}".format(42,42,42,42))
+|
+Onluk tabanda 42
+Ýkili tabanda 0b101010
+Sekizli tabanda 0o52
+Onaltýlý tabanda 0x2a
+
+
+
+Büyük sayýlarý virgülle üçer basamaklý ayýrmak için {:,} kullanýrýz.
+
+"{:,}".format(123456789)
+|
+'123,456,789'
+
+
+
+
+Ondalýklý sayýlarý göstermek için þu kodlar kullanýlabilir:
+
+{:f} veya {:F} (fixed): Ondalýktan sonra sabit sayýda basamak (varsayýlan 6).
+{:e} veya {:E} (exponential): Sayýyý bilimsel notasyonda gösterir; üsteli "e" veya "E" harfinden sonra koyar.
+{:g} veya {:G} (genel): Yerine göre f veya e. Belirli bir basamak sayýsýný (varsayýlan 6) verecek þekilde yuvarlar; sayýnýn büyüklüðüne göre f veya e biçimine getirir.
+{:%}: Sayýyý 100 ile çarpar ve sonuna yüzde iþareti koyar.
+
+
+x = 12345.6789
+print("Sabit biçim: {:f}, {:F}".format(x,x))
+print("Üstel biçim: {:e}, {:E}".format(x,x))
+print("Genel biçim: {:g}, {:G}".format(x,x))
+|
+Sabit biçim: 12345.678900, 12345.678900
+Üstel biçim: 1.234568e+04, 1.234568E+04
+Genel biçim: 12345.7, 12345.7
+
+x = 12345.6789
+print("Sabit biçim: {:4.2f}, {:4.4F}".format(x,x))
+print("Üstel biçim: {:1.3e}, {:1.4E}".format(x,x))
+print("Genel biçim: {:.10g}, {:.2G}".format(x,x))
+|
+Sabit biçim: 12345.68, 12345.6789
+Üstel biçim: 1.235e+04, 1.2346E+04
+Genel biçim: 12345.6789, 1.2E+04
+
+
+Yüzdeleri gösterirken % kodunu kullanabiliriz.
+
+geçen = 57
+baþvuran = 245
+"Baþarý oraný {:.2%}".format(geçen/baþvuran)
+|
+'Baþarý oraný 23.27%'
+
+
+
+Nesne Ýçi Deðiþkenleri Kullanmak
+--------------------------------
+
+Nesnelerin iç deðiþkenleri (“attributes”) kalýp dizede kullanýlabilir. Örneðin, karmaþýk sayýlarýn gerçek kýsýmlarý real, sanal kýsýmlarý imag isimli iç deðiþkenlerde saklanýr.
+
+z = 3+2j
+z.real, z.imag
+|
+(3.0, 2.0)
+
+Dize biçimlendirmede bu iç deðiþkenlerin isimlerini doðrudan kullanabiliriz.
+
+"Gerçek kýsým {0.real}, sanal kýsým {0.imag}".format(3+2j)
+|
+'Gerçek kýsým 3.0, sanal kýsým 2.0'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,276 @@
+https://htmldog.com/guides/html/
+https://htmldog.com/guides/css/
+
+
+
+p: PARAGRAPH
+------------
+<p>This is my first web page</p>
+<p>How exciting</p>
+
+
+div
+---
+A place that you can use your class in.
+You can describe properties of div in CSS file.
+
+
+
+em: ITALIC
+----------
+<em>is</em>
+
+
+
+strong: BOLD
+------------
+<strong>Warning:</strong>
+
+
+
+br: BREAK LINES
+---------------
+This is my first web page<br>
+How exciting
+
+
+
+h1, h2, h3, h4, h5, h6: HEADER
+------------------------------
+<h1>My first web page</h1>
+
+
+
+ul: UNORDERED LIST
+------------------
+<ul>
+     <li>To learn HTML</li>
+     <li>To show off</li>
+     <li>Because I've fallen in love with my computer and want to give her some HTML loving.</li>
+</ul>
+
+
+
+ol: ORDERED LIST
+----------------
+<ol>
+     <li>To my boss</li>
+     <li>To my friends</li>
+     <li>To my cat</li>
+     <li>To the little talking duck in my brain</li>
+</ol>
+
+
+
+a: LINK
+-------
+<p><a href="http://www.htmldog.com">HTML Dog</a></p>
+
+
+
+id: LINK IN THE SAME PAGE (SCROLL)
+----------------------------------
+<h2 id="moss">Moss</h2>
+<a href="#moss">Go to moss</a>
+
+You can also use id like this:
+First describe sth in CSS file like "#menu" (# is important)
+Than you can write this code in HTML file:  <div id="menu">MAIN PAGE</div>
+
+
+
+img: IMAGE
+----------
+<img src="http://www.htmldog.com/badge1.gif" width="120" height="90" alt="HTML Dog">
+
+IF YOU SAVED THE IMAGE:
+<img src="images/alienpie.jpg"...
+
+
+
+table: STRUCTURE TABULAR DATA
+-----------------------------
+<table>
+    <tr>
+        <td>Row 1, cell 1</td>
+        <td>Row 1, cell 2</td>
+        <td>Row 1, cell 3</td>
+    </tr>
+    <tr>
+        <td>Row 2, cell 1</td>
+        <td>Row 2, cell 2</td>
+        <td>Row 2, cell 3</td>
+    </tr>
+    <tr>
+        <td>Row 3, cell 1</td>
+        <td>Row 3, cell 2</td>
+        <td>Row 3, cell 3</td>
+    </tr>
+    <tr>
+        <td>Row 4, cell 1</td>
+        <td>Row 4, cell 2</td>
+        <td>Row 4, cell 3</td>
+    </tr>
+</table>
+
+
+
+form: ARE USED TO COLLECT DATA INPUTTED BY A USER
+-------------------------------------------------
+action attribute: tell the form where its contents will be sent to.
+
+method attribute: tell the form how the data in it is going to be sent.
+                  have the value get or post
+                  get: shorter, non-sensitive information
+                  post: lengthier, more secure submissions such as in contact forms
+
+<form action="processingscript.php" method="post">
+</form>
+
+
+
+input: UNDER THE FORM
+---------------------
+<input type="text"> or <input>: standard textbox.
+                                can also have a value attribute which sets the initial text in the textbox.
+
+<input type="password">: characters will be hidden.
+
+<input type="checkbox">: can be ticked.
+<input type="checkbox" checked>: makes the initial state switched on.
+
+<input type="radio">: can be selected once.
+                      You must give name attribute to select once. This attributes must be same if you want to select one thing for one subject.
+<input type="radio" checked>: makes the initial state switched on.
+
+<input type="submit">: a button that when selected will submit the form.
+<input type="submit" value="BUTTON">: BUTTON is written on the button.
+
+<input type="file">: for choosing a file
+                     if this exists, you need to write a third attribute for form: enctype="multipart/form-data"
+<input type="file" accept="image/*">: accept is for special folders.
+                                      image/jpg for jpg folders, image/png for png folders...
+                                      image/* for all image folders.
+<input type="file" multiple name="file[]">: now you can choose more than one file.
+
+<input type="reset" value="Delete chosen things">: reset the form
+
+<input type="color">
+
+<input type="date">
+
+<input type="datetime-local">
+
+<input type="email">: the input you give must include "@".
+                      on telephones or tablets, the keyboard will change and include @ while you are typing.
+
+<input type="month">
+
+<input type="week">
+
+<input type="number">: you can give min and max attributes.
+
+<input type="range">: you can give min, max and step attributes.
+                      step attribute is the number of increasing or decreasing.
+
+<input type="search">: deletion icon will be seen.
+
+<input type="tel">: special keyboard with numbers will be opened when you start typing on telephone etc..
+
+<input type="time>
+
+<input type="url">: .com etc. will be seen on telephone etc. keyboards and full form of url is required.
+
+
+
+
+
+
+
+***YOU CAN WRITE "required" INSIDE THE INPUT TAG SUCH AS "checked" SO USER CANNOT SEND WITHOUT FILLING OUT THAT FIELD.
+
+***YOU CAN WRITE "autofocus" INSIDE THE INPUT TAG. THIS IS FOR FOCUSING THE CHOSEN INPUT WHEN YOU OPENED THE SITE.
+
+***YOU CAN GIVE MAXLENGTH ATTRIBUTE ("maxlength="...") INSIDE THE INPUT TAG. 
+
+***YOU CAN GIVE PLACEHOLDER ATTRIBUTE ("placeholder="...") INSIDE THE INPUT TAG. IT IS FOR PLACE THE TEXTBOX BUT NOT BE CHANGED (LIKE "Type your username").
+
+***label: <label>
+             <input type="checkbox">I accept.
+          </label>
+   NOW YOU CAN CLICK TO "I accept." AND YOU'LL SEE THAT CHECKBOX WILL BE TICKED.
+
+          <label for="un">USERNAME</label>
+          <input id="un" type="text">
+   NOW YOU CAN CLICK TO "USERNAME" AND START TYPING.
+
+---> SAME FOR OTHER TYPES.
+
+
+
+***IMG, BR AND INPUT TAGS DOESN'T REQUIRE A CLOSING TAG***
+
+
+
+
+textarea: LARGE, MULTI-LINE TEXTBOX. 
+------------------------------------
+You can manipulate the size to your heart’s content using CSS.
+
+<textarea rows="5" cols="20">A big load of text</textarea>
+
+*Any text you choose to place between the opening and closing tags (in this case “a big load of text”) will form the initial value of the text area.
+
+
+
+select: WORKS WITH THE OPTION TAG TO MAKE DROP-DOWN SELECT BOXES.
+-----------------------------------------------------------------
+<select>
+    <option>Option 1</option>
+    <option>Option 2</option>
+    <option value="third option">Option 3</option>
+</select>
+
+When the form is submitted, the value of the selected option will be sent.
+If the first item is selected, “Option 1” will be sent, if the third item is selected, “third option” will be sent.
+
+<select>
+    <option>Option 1</option>
+    <option>Option 2</option>
+    <option value="third option">Option 3</option>        ---> would pre-select “Rodent” from the items.
+    <option selected>Rodent</option> 
+</select>
+
+
+
+
+names
+-----
+If you hook up your form to a form-handling script, all of the tags mentioned above will all be ignored.
+This is because the form fields need names.
+
+<input type="text" name="talkingsponge">
+
+
+
+
+id - name - value
+-----------------
+id:   is used to identify the HTML element through the Document Object Model (via JavaScript or styled with CSS). id is expected to be unique within the page.
+
+name:  corresponds to the form element and identifies what is posted back to the server.
+       This name attribute can be used to reference the element in a JavaScript.
+       For form elements it is also used as a reference when the data is submitted,
+       The name attribute is used to reference elements in a JavaScript, or to reference form data after a form is submitted.
+
+value: When present in “button”, “reset” and “submit” it specifies the text on the button.
+       When present in “text”, “password” and “hidden” it specifies the initial value of the input field.
+       When present in “checkbox”, “radio” and “image” it specifies the value associated with the input(this is also the value that is sent on submit). You can now understand which one was chosen with looking to the value.
+       When present in “option”, this is the value that is sent on submit.
+       <meter>: It specifies the current value of the gauge. The value must be between min and max attribute.
+       <li>: When the value attribute is present, it specifies the initial value of the list item. It is only applicable on the ordered list.
+       <progress>: When the value attribute is present, it specifies the value of the progress element.
+       
+
+
+

@@ -1,0 +1,14 @@
+Elektrik akımını aktarmak için iletken kablolar kullanıyoruz. Yine su örneğinden gidecek olursak, kabloları su taşıyan borular olarak hayal edebiliriz. Bu boruların çapı daraldıkça akacak olan suyun daha zorlanacağını tahmin edebiliriz. Elektriksel anlamda direnç aynı bu etkiyi göstermektedir.
+
+Elektrik akımına karşı oluşan etkiye DİRENÇ denir. Birimi Ohm'dur. Sembolü büyük omegadır. Denklemlerde R harfi ile ifade edilir.
+
+Gerilim akımı iletmeye çalışırken direnç bunu engeller.
+
+Direnç ohmmetre ile ölçülür.
+Ohmmetre, devreye paralel bağlanır.
+
+Piyasada akım ve gerilim ölçmek için satılan cihazlar genellikle multimetre veya avometre (amper, volt, ohmmetre) ismiyle anılır ve isimlerinden de anlaşılabileceği gibi akım, gerilim ve direnç ölçme işlemlerinde kullanılabilirler.
+
+OHM YASASI, bir devre elemanının geriliminin (V), üzerinden geçecek akım (I) ve direnci (R) ile doğru orantılı olacağını söyler: 
+
+V = I x R

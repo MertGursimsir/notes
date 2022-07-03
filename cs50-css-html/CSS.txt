@@ -1,0 +1,307 @@
+THERE ARE THREE WAYS TO APPLY CSS TO HTML: INLINE, INTERNAL, EXTERNAL
+* HTML has tags, CSS has selectors*
+
+
+ID: for singular
+CLASS: for plural
+
+
+INLINE
+------
+<p style="color: red">text</p>
+
+
+
+INTERNAL: used for the whole page
+---------------------------------
+<head>
+   <style>
+
+    p {
+        color: red;
+    }
+
+    a {
+        color: blue;
+    }
+
+</style>
+...
+
+
+This will make all of the paragraphs in the page red and all of the links blue.
+
+
+
+
+EXTERNAL: External styles are used for the whole, multiple-page website. There is a separate CSS file.
+------------------------------------------------------------------------------------------------------
+style.css
+p {
+    color: red;
+}
+
+a {
+    color: blue;
+}
+
+
+HTML FILE: 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS Example</title>
+    <link rel="stylesheet" href="style.css">
+
+
+
+
+SELECTORS
+---------
+For each selector there are “properties” inside curly brackets, which simply take the form of words such as color, font-weight or background-color.
+
+
+body {
+    font-size: 14px;
+    color: navy;
+}
+
+
+
+
+LENGTHS AND PERCENTAGES
+-----------------------
+font-size: 12px   --->   unit for pixels
+
+font-size: 2em    --->   unit for the calculated size of a font, 2em means tow times the current font size
+
+font-size: 12pt   --->   unit for points
+
+width: 80%        --->   unit for percentages
+
+
+other units:  pc (picas), cm (centimeters), mm (millimeters) and in (inches)
+
+When a value is zero, you do not need to state a unit. For example, if you wanted to specify no border, it would be border: 0.
+
+
+
+
+COLORS
+------
+Colors can take the form of a name, an RGB (red/green/blue) value or a hex code.
+
+Red: -red
+     -rgb(255,0,0)
+     -rgb(100%,0%,0%)
+     -#ff0000
+     -#f00 : compressed version of the above
+
+Predefined color names: aqua, black, blue, fuchsia, gray, green, lime, maroon, navy, olive, purple, red, silver, teal, white, yellow, and also transparent
+
+
+
+
+COLOR AND BACKGROUND-COLOR
+--------------------------
+A blue background and yellow text could look like this:
+
+
+h1 {
+    color: yellow;
+    background-color: blue;
+}
+
+
+
+
+
+font-family
+-----------
+font-family: arial, helvetica, serif
+
+Browser will look for the Arial font first and, if the browser can’t find it, it will search for Helvetica, and then a common serif font.
+
+font-family: "Times New Roman" ---> in quotation marks bc more than one word
+
+
+
+font-size
+---------
+font-size: 50%
+           x-small
+           medium
+           x-large
+           12px
+
+
+font-weight: states whether the text is bold or not
+---------------------------------------------------
+font-weight: bold
+             normal
+             bolder
+             lighter
+             100
+             200
+             ...
+             800
+             900
+
+
+
+font-style: states whether the text is italic or not
+----------------------------------------------------
+font-style: italic
+            normal
+
+
+
+
+text-decoration: states whether the text has got a line running under, over, or through it.
+-------------------------------------------------------------------------------------------
+text-decoration: underline (generally expected to be link)
+                 overline
+                 line-through
+
+
+text-transform: change the case of the text.
+--------------------------------------------
+text-transform: capitalize
+                uppercase
+                lowercase
+                none
+
+
+letter-spacing / word-spacing: for spacing between letters or words.
+--------------------------------------------------------------------
+values can be A LENGTH or "normal".
+
+
+
+line-height: sets the height of the lines in an element
+-------------------------------------------------------
+values can be A NUMBER, A LENGTH, A PERCENTAGE or "normal".
+                  |
+     "2" will be two times the font size
+
+
+
+text-align
+----------
+values can be "left", "right", "center" or "justify".
+
+
+
+text-indent: indent the first line of a paragraph
+-------------------------------------------------
+values can be length or percentage.
+
+
+
+
+
+MARGIN AND PADDING
+------------------
+Margin is the space outside sth,
+Padding is the space inside sth.
+
+
+h2 {
+    font-size: 1.5em;
+    background-color: #ccc;
+    margin: 20px;
+    padding: 40px;
+}
+
+
+This leaves a 20-pixel width space around the secondary header and the header itself is fat from the 40-pixel width padding.
+
+
+The four sides of an element can also be set individually:
+
+-margin-top, 
+-margin-right, 
+-margin-bottom, 
+-margin-left, 
+-padding-top, 
+-padding-right, 
+-padding-bottom
+-padding-left 
+
+are the self-explanatory properties you can use.
+
+
+________________________________________________________
+|Margin Box                                             |
+|    _____________________________________________      |
+|    |Border Box                                 |      |
+|    |   _____________________________________   |      |
+|    |   |Padding Box                         |  |      |
+|    |   |   ______________________________   |  |      |
+|    |   |   |Element Box                  |  |  |      |
+|    |   |   |_____________________________|  |  |      |
+|    |   |____________________________________|  |      |
+|    |___________________________________________|      |
+|                                                       |
+|_______________________________________________________|
+
+
+
+
+
+BORDERS
+-------
+
+border-style
+------------
+values can be: solid
+               dotted
+               dashed
+               double
+               groove
+               ridge
+               inset
+               outset
+
+
+border-width
+------------
+most commonly using pixels as a value
+
+There are also properties for: border-top-width, 
+                               border-right-width, 
+                               border-bottom-width,
+                               border-left-width.
+
+border-color
+------------
+sets the color.
+
+
+
+h2 {
+    border-style: dashed;
+    border-width: 3px;
+    border-left-width: 10px;
+    border-right-width: 10px;
+    border-color: red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

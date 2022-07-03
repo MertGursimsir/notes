@@ -1,0 +1,272 @@
+Programýn hata mesajý vermesi yerine, hataya kendi istediðimiz þekilde cevap vermesini saðlamanýn bir yolu.
+
+
+
+while True:
+    x = input("Bir sayý girin: ")
+    if not x:
+        break
+    print(float(x)**2)
+|
+Bir sayý girin: 1
+1.0
+Bir sayý girin: -45.5
+2070.25
+Bir sayý girin: abc
+----------------------
+ValueError
+
+
+
+Hata yakalama (exception handling) yapýsý kullanýrsak bu tür sorunlarý programýmýzý durdurmadan halletmemiz mümkün olur.
+
+
+while True:
+    x = input("Bir sayý girin: ")
+    if not x:
+        break
+    try:
+        y = float(x)
+    except ValueError:
+        print("Geçersiz sayý")
+        continue
+    print(y**2)
+|
+Bir sayý girin: 3
+9.0
+Bir sayý girin: -2
+4.0
+Bir sayý girin: abc
+Geçersiz sayý
+Bir sayý girin: 1.5
+2.25
+Bir sayý girin: ...
+
+
+HATA TÝPLERÝ
+------------
+Hata ismini nereden bileceðiz?
+
+Bu hata durumlarýnýn ne olduðunu anlamak için komutlarý çalýþtýrýp ne tip hata aldýðýnýza bakabilirsiniz ve sonra buna göre try/except bloklarý yazabilirsiniz. Yardým belgelerinde de fonksiyonun hangi durumlarda hangi hatalarý yayýnlayacaðýna dair bilgi mevcuttur.
+
+
+BÝRDEN FAZLA HATA
+-----------------
+while True:
+    x = input("Bir sayý girin: ")
+    if not x:
+        break
+    try:
+        y = 1/float(x)
+    except:
+        print("Geçersiz sayý")
+        continue
+    print(y)
+|
+Bir sayý girin: 0
+Geçersiz sayý
+Bir sayý girin: abc
+Geçersiz sayý
+Bir sayý girin: 2
+0.5
+Bir sayý girin: 
+
+
+Ayrý ayrý da yapabiliriz:
+
+while True:
+    x = input("Bir sayý girin: ")
+    if not x:
+        break
+    try:
+        y = 1/float(x)
+    except ValueError:
+        print("Geçersiz sayý")
+        continue
+    except ZeroDivisionError:
+        print("Sýfýra bölme")
+        continue
+    print(y)
+|
+Bir sayý girin: abc
+Geçersiz sayý
+Bir sayý girin: 0
+Sýfýra bölme
+Bir sayý girin: 4
+0.25
+Bir sayý girin: 
+
+
+
+HATA DURUMU HÝYERARÞÝSÝ
+-----------------------
+Hata durumlarý bir nesne hiyerarþisi içinde tanýmlanýr. Bunlarýn en geneli BaseException sýnýfýdýr; diðer daha özelleþmiþ hata durumlarý bunlardan türetilir.
+
+BaseException
+ +-- SystemExit
+ +-- KeyboardInterrupt
+ +-- GeneratorExit
+ +-- Exception
+      +-- StopIteration
+      +-- StopAsyncIteration
+      +-- ArithmeticError
+      |    +-- FloatingPointError
+      |    +-- OverflowError
+      |    +-- ZeroDivisionError
+      +-- AssertionError
+      +-- AttributeError
+      +-- BufferError
+      +-- EOFError
+      +-- ImportError
+      |    +-- ModuleNotFoundError
+      +-- LookupError
+      |    +-- IndexError
+      |    +-- KeyError
+      +-- MemoryError
+      +-- NameError
+      |    +-- UnboundLocalError
+      +-- OSError
+      |    +-- BlockingIOError
+      |    +-- ChildProcessError
+      |    +-- ConnectionError
+      |    |    +-- BrokenPipeError
+      |    |    +-- ConnectionAbortedError
+      |    |    +-- ConnectionRefusedError
+      |    |    +-- ConnectionResetError
+      |    +-- FileExistsError
+      |    +-- FileNotFoundError
+      |    +-- InterruptedError
+      |    +-- IsADirectoryError
+      |    +-- NotADirectoryError
+      |    +-- PermissionError
+      |    +-- ProcessLookupError
+      |    +-- TimeoutError
+      +-- ReferenceError
+      +-- RuntimeError
+      |    +-- NotImplementedError
+      |    +-- RecursionError
+      +-- SyntaxError
+      |    +-- IndentationError
+      |         +-- TabError
+      +-- SystemError
+      +-- TypeError
+      +-- ValueError
+      |    +-- UnicodeError
+      |         +-- UnicodeDecodeError
+      |         +-- UnicodeEncodeError
+      |         +-- UnicodeTranslateError
+      +-- Warning
+           +-- DeprecationWarning
+           +-- PendingDeprecationWarning
+           +-- RuntimeWarning
+           +-- SyntaxWarning
+           +-- UserWarning
+           +-- FutureWarning
+           +-- ImportWarning
+           +-- UnicodeWarning
+           +-- BytesWarning
+           +-- ResourceWarning
+
+
+Bu hiyerarþi sebebiyle, alt seviye bir hatayý yayýnlayan bir kod, onun üstündeki hatalarý da yayýnlar. Söz geliþi, 1/0 iþlemi ZeroDivisionError, ArithmeticError, Exception ve BaseException hatalarýnýn hepsine uyar.
+
+Bir try/except yapýsýnda bir hata durumu belirtmezsek en genel durum olan BaseException yayýnlanýr.
+
+try:
+    1/0
+except:
+    print("Bir hata oldu.")
+|
+Bir hata oldu.
+
+
+Ama böyle bir kullaným, okunaklý yazýlým geliþtirme açýsýndan doðru deðildir. Eðer try blokumuz geniþse ve birden fazla farklý hata olmasý ihtimali varsa, hepsi birden bu mesajý verir, ve hangi hatanýn gerçekleþtiðini tespit etmemiz mümkün olmaz.
+
+Belirsizliði azaltmak için en iyi yol, hiyerarþide en alt noktadaki (en dar kapsamlý) hata durumunu yakalamak ve ona göre ayrý except bloklarý içinde sorunu gidermektir.
+
+try:
+    2.5**1000
+except OverflowError:
+    print("Ýþlem çok büyük.")
+except ZeroDivisionError:
+    print("Sýfýra bölme.")
+|
+Ýþlem çok büyük.
+
+
+FONKSÝYONLARIMIZDA HATA DURUMU YAYINLAMAK
+-----------------------------------------
+Kendi yazdýðýmýz fonksiyonlarýn içinde raise komutu kullanarak bir hata durumu yayýnlanmasýný saðlayabiliriz. Örnek olarak, negatif argüman aldýðýnda ValueError yayýnlayan bir faktöriyel fonksiyonu yazalým. Hata mesajýný deðiþtirmemiz de mümkündür:
+
+def faktöryel(x):
+    x = int(x)    
+    if x<0:
+        raise ValueError("Negatif deðer")
+    p = 1
+    for i in range(1,x+1):
+        p *= i
+    return p
+
+
+
+for x in [5, -5, "abc", 5]:
+    try:
+        y = faktöryel(x)
+    except ValueError as e:
+        print(x,": ", e)
+        continue
+    print(y)
+|
+120
+-5 :  Negatif deðer
+abc :  invalid literal for int() with base 10: 'abc'
+120
+
+Bu koddaki except ValueError as e: komutu ile hata durumu e isimli bir yerel deðiþkende saklanabilir ve blok içinde kullanýlabilir. Yukarýdaki gibi print() içinde kullanýldýðýnda hata mesajýný ekrana basarýz. Negatif girdi ve harf girdisi durumlarýnda farklý hata mesajlarý çýktýðýna dikkat edin.
+
+
+YENÝ HATA DURUMLARI YARATMAK
+----------------------------
+Yeni bir hata tanýmlarken varolan bir hatayý temel alýrýz. Söz geliþi, genel Exception nesne sýnýfýndan türetilmiþ bir VektörBoyuHatasý tanýmlayalým.
+
+
+class VektörBoyuHatasý(Exception):
+    pass
+
+
+Buradaki pass kelimesi etkisiz bir komuttur. Python sözdizimi gereðince doldurulmasý gereken bir yere herhangi bir kod koymak istemediðimizde kullanýrýz.
+
+
+def iç_çarpým(L1, L2):
+    if len(L1)!=len(L2):
+        raise VektörBoyuHatasý("Parametreler ayný sayýda elemandan oluþmalý.")
+    return sum( [a*b for (a,b) in zip(L1,L2)] )
+
+
+iç_çarpým([1,2,3], [-1,0,1])
+|
+2
+
+iç_çarpým([1,2,3,4], [-1,0,1])
+|
+---------------------------------------------------------------------------
+VektörBoyuHatasý                          Traceback (most recent call last)
+<ipython-input-27-c50d96ffce9d> in <module>
+----> 1 iç_çarpým([1,2,3,4], [-1,0,1])
+
+<ipython-input-26-27d6dc940237> in iç_çarpým(L1, L2)
+      1 def iç_çarpým(L1, L2):
+      2     if len(L1)!=len(L2):
+----> 3         raise VektörBoyuHatasý("Parametreler ayný sayýda elemandan oluþmalý.")
+      4     return sum( [a*b for (a,b) in zip(L1,L2)] )
+
+VektörBoyuHatasý: Parametreler ayný sayýda elemandan oluþmalý.
+
+
+
+try:
+    iç_çarpým([1,2,3,4], [-1,0,1])
+except VektörBoyuHatasý as e:
+    print(e)
+|
+Parametreler ayný sayýda elemandan oluþmalý.

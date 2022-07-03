@@ -1,0 +1,10 @@
+Sanal Makine: Kendi bilgisayarýmýz içinde sanal olarak herhangi bir iþletim sistemini çalýþtýrmaya olanak saðlayan teknoloji.
+
+Kendi bilgisayarýnda Windows'u, Mac'i, Linux'u sanal olarak çalýþtýrabilir; gerçek bir bilgisayarmýþ gibi onunla iþlemler yapabilir; gerçek bir bilgisayarmýþcasýna ona ram, iþlemci, ekran kartý, ekran görünürlüðü vs. birçok özellik atayabilirsin. 
+
+Neden yapýyoruz?
+Siber güvenlik ve etik hackerlýk gibi kavramlar için hazýr bütün araçlarýn olduðu Kali Linux isimli çok geniþ kapsamlý bir iþletim sistemi var. Bunu kullanacaðýz.
+Ayrýca hackerlarýn saldýrýlarý nasýl yaptýðýný, metodlarýný bir kurban makine üzerinde denememiz gerekiyor.
+2 bilgisayarla çalýþmamak için 2 sanal makineyle çalýþacaðýz. Böylece yasa dýþý bir iþ yapmayacaðýz. Kendi güvenli laboratuvarlarýmýz içinde iþ yapacaðýz.
+
+Kýsaca birden fazla bilgisayarla uðraþmamak, tamamen güvenli ortamda bunlarý test etmek için yapýyoruz.

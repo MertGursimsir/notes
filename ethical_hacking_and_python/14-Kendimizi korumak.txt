@@ -1,0 +1,7 @@
+1)Her ağa girmemeliyiz. 
+
+2)Girmek zorundaysak vpn kullanmalıyız. Güvenli vpnler serverlara https üzerinden verileri alıp veriyor ve şifreleyip alıp veriyor. Hacker çalsa bile verileri okuyamaz hale geliyor.
+
+3)Https'ten Http'ye downgrade olduysa saldırı olduğunu anlarız.
+
+4)Gerçekten bir şeyden şüphelenirsek arp -a komutunu çalıştırırız.

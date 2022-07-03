@@ -1,0 +1,21 @@
+Ýnternet baðlantýsýnda farklý farklý bilgisayarlar vardýr.
+Google'a ulaþmak için Google'ýn sunucusuna, yani herhangi bir bilgisayarýna ulaþýp herhangi bir istek yaparýz. O da bize cevap verir.
+
+IP ADRESÝ
+---------
+Modemimizin bir IP adresi var. --> Public IP
+O modeme baðlý bütün cihazlar ayný IP adresine sahiptir.
+Fakat yerel IP'ler farklýdýr. Modem, telefon, bilgisayar vs. hepsinin yerel IP'leri farklýdýr.
+Modem diðer cihazlara IP adresi atar.
+Cihazlar bu IP adreslerini kullanarak kendi aralarýnda iletiþim kurarlar.
+Ýnternette iþlem yaparken modem, bilgisayar vs.leri ayrýþtýrmak, tanýmlamak için kullanýlýr.
+
+MAC ADRESÝ
+----------
+Ýnternete baðlanmak için kullandýðýmýz cihaz içerisine konulan bir adres.
+Üreticiler tarafýndan atanýr. Her cihazýn MAC adresi birbirinden farklýdýr.
+Bilgisayarýn ethernet kartýna üretici tarafýndan kodlanan bir bilgidir.
+Cihazýn hangi aða baðlý olduðuyla ilgili bir bilgi içermez.
+Að içindeki iþlemlerde cihazlarý ayrýþtýrmak, tanýmlamak için kullanýlýr.
+Anonimlik için sahte MAC adresleri üretilebilir. 
+Bazý aðlarda MAC adresleri kullanýlarak izinler verilir. Örneðin; MAC adresi buysa bana baðlanabilsin, bunu yapabilsin. O tanýmlý adreslerden birine deðiþtirmek isteyebiliriz.

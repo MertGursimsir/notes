@@ -1,0 +1,123 @@
+MyFile jupyter dosyası oluşturdun.
+Bu dosyanın olduğu yere bir dosya koymamız gerekiyor. Bunun için kendin de bir dosya oluşturabilirsin ya da jupyter notebookların özel metodunu kullanabilirsin. Bu metodla MyFile dosyasının olduğu yere bir text document oluşturursun.
+
+%%writefile myfile.txt
+Test1
+Test2
+Test3
+
+
+my_file=open("myfile.txt")
+
+
+
+my_file.read()
+|
+'Test1\nTest2\nTest3\n'
+
+
+my_file.read()
+|
+''
+
+
+my_file.read() dediğinde içerisinde bir cursor (imleç) gibi bir şey var. Dosyanın en başından başlar ve tek tek okur. Kaldığı yerde durur. Okuyup bitirdikten sonra tekrardan read dediğimizde en sonundan başladığı için boş cevap verir. Bizim cursor'ı alıp en başa koymamız gerekiyor.
+
+
+my_file.seek(0)    ---> 0'a yani başa git.
+|
+0
+
+
+my_file.read()
+|
+'Test1\nTest2\nTest3\n'
+
+
+
+Çok pratik değildir. Bu dosyayı manual olarak kapatmamız gerekiyor. Yoksa silmeye çalışırsak hata verir. 
+
+my_file.close()
+
+
+
+
+Bunları daha iyi yapabilmemiz için with komutunu kullanırız.
+with'in olayı şu: bana kod bloğu oluşturur. "with", Unmanaged streams of data ile çalışır. Unmanaged data: Başka bir işlem tarafından yönetilmeyen veriler. Burada da myfile dosyamız var ve onu yöneten bir şeyimiz yok.
+with'i dosyalarla çalışırken kullanacağız. Fakat dosyalar gibi unmanaged olan, yeni oluşturulmuş listenerlar (dinleme fonksiyonları) ile vs. kullanmamız gerekirse o zaman da kullanacağız. 
+
+
+with open ("myfile.txt") as my_file:     
+    file_read=my_file.read()
+
+
+file_read
+|
+'Test1\nTest2\nTest3\n'
+
+
+file_read
+|
+'Test1\nTest2\nTest3\n'
+
+
+
+                                          
+with open("myfile.txt", mode="r") as my_new_file:    ---> r (read): sadece okuma izni verilir.
+    read_files_new=my_new_file.read()
+
+
+
+read_files_new
+|
+'Test1\nTest2\nTest3\n'
+
+
+
+
+with open("myfile.txt", mode="w") as my_new_file:    ---> w (write): sadece yazma izni verilir.
+    read_files_new=my_new_file.read()
+|
+HATA
+Çünkü okuma iznimiz yok.
+
+
+
+with open("myfile.txt", mode="w") as my_new_file:
+    my_new_file.write("Test4")
+
+
+
+with open("myfile.txt", mode="r") as my_new_file_2:
+    contents=my_new_file_2.read()
+
+
+contents
+|
+'Test4'
+
+
+
+
+
+with open("myfile.txt", mode="a") as my_new_file_3:    ---> a (append): sadece ekleme izni verilir.
+    my_new_file_3.write(" Test5")
+
+
+with open("myfile.txt", mode="r") as my_new_file_5:
+    contents_2=my_new_file_5.read()
+
+
+
+contents_2
+|
+'Test4 Test5'
+
+
+
+
+
+
+***with senin dosya vb. yapılarla çalışırken çıkabilecek sorunları minimuma indirmene, işin bittiğinde arkanı temizleyip uğraşmamana ve sonrasında o dosyada bir hata alınmamasına yardımcı olur. 
+
+https://effbot.org/zone/python-with-statement.htm

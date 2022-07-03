@@ -1,0 +1,205 @@
+a = [1,2,3]
+b = a
+b
+|
+[1,2,3]
+
+
+b[1] = "abc"
+b
+|
+[1, 'abc', 3]
+
+
+a
+|
+[1, 'abc', 3]
+
+
+
+a=42 dediðin zaman 2 þey yaparsýn: 42 deðerini taþýyan bir tamsayý nesnesi yaratýrsýn.
+                                   a ismi yaratýrsýn.
+Ardýndan da bu ismi 42 nesnesine baðlarsýn.
+Ýsim ve iþaret ettiði nesne birbirlerinden baðýmsýzdýr.
+
+a -------------> 42
+
+Ýsimlerle nesneler birbirinden ayrýldýðý için, Python’da deðiþkenlerin ne tipte olduðunu (tamsayý, karakter, vs) açýklamak gerekmez. Ayný isim çok farklý tipte nesnelere aktarýlabilir.
+
+a=42 dedikten sonra a="merhaba" dersen yorumlayýcý "merhaba" dizesini barýndýran bir nesne yaratýr ve a ismini bu yeni dizeye baðlar.
+
+42'ye referans veren baþka bir isim varsa yerinde kalýr, yoksa silinir. Her nesneyle beraber ona kaç referans verildiðinin sayýsý tutulur. Bu sayý sýfýra indiðinde “ÇÖP TOPLAYICI” o nesneyi bellekten kaldýrýr.
+
+a---------------> "merhaba"
+                 
+                  42 (boþta)
+
+a deðiþkenini "merhaba"ya baðladýktan sonra b = a gibi bir atama yapýldýðýnda "merhaba"ya bir de b ismi baðlanýr. Þimdi ayný nesnenin iki farklý ismi vardýr.
+
+a = "merhaba"
+b = a
+b is a
+|
+True
+
+True verdi çünkü iki isim ayný nesneye iþaret ediyor.
+Yani a ve b eþit olmakla kalmaz, ayný olurlar.
+
+a----------------> "merhaba"
+                      ^
+                      |
+b----------------------
+
+
+
+En baþtaki listelere dönecek olursak, yaptýðýmýz atamalar sonucunda a ve b ayný listeye iþaret ettiðinden, b ismi aracýlýðýyla yapýlan bir deðiþiklik a ismine de yansýr.
+
+
+Ayný davranýþ fonksiyonlarda da görülür. Bir fonksiyon parametre olarak bir liste alýr ve listeyi kendi içinde deðiþtirirse, orijinal liste de deðiþir.
+
+
+
+def f(x,L):
+    L[0] = x  # L'nin ilk elemanýna x'i ata.
+a = [1,2,3]
+f("merhaba",a)
+a
+|
+['merhaba', 2, 3]
+
+
+
+PEKÝ NE YAPMALIYIZ?
+
+copy() metoduyla elde ettiðimiz kopyayý yeni bir isme atadýðýmýzda, artýk iki isim ayný nesneye iþaret etmez, ve birinde yapýlan deðiþiklik öbürüne aktarýlmaz.
+
+a = [1,2,3]
+b = a.copy()
+print("a is b?", a is b)
+print("a == b?", a == b)
+|
+a is b? False
+a == b? True
+
+
+a ---------> [1,2,3]
+b ---------> [1,2,3]
+
+b[0] = "abc"
+b
+|
+['abc', 2, 3]
+
+a
+|
+[1, 2, 3]
+
+
+***TUPLE VE STRINGLERDE COPY YOK AMA ONLAR ZATEN IMMUTABLE (DEÐÝÞTÝRÝLEMEZ) NESNELER OLDUKLARINDAN ELEMANLARINA ATAMA YAPILAMAZ.
+
+Sýralý nesnelerde kopyalamanýn bir diðer yolu:
+
+a = [1,2,3]
+b = a[:]
+a is b
+|
+False
+
+
+ANCAK, gerek copy() metodu gerekse de a[:] iþlemi sýð bir kopya üretir. Baþka bir deyiþle, liste elemanlarýný birebir kopyalarlar. Ama ya liste elemanýnýn kendisi bir listeyse? O zaman ayný problem daha derin bir seviyede karþýmýza çýkar.
+
+a = [5, [4,9,3], 7.1]
+b = a.copy()
+b[0] = 8                # a'yý deðiþtirmez
+print("a =",a)
+print("b =",b)
+|
+a = [5, [4, 9, 3], 7.1]
+b = [8, [4, 9, 3], 7.1]
+
+ 
+b[1][0] = "merhaba"     # a'yý deðiþtirir
+print("a =",a)
+print("b =",b)
+|
+a = [5, ['merhaba', 9, 3], 7.1]
+b = [8, ['merhaba', 9, 3], 7.1]
+
+
+Ayný sorunla karþýlaþmamýzýn sebebi, a‘nýn ikinci elemanýnýn bir referans barýndýrmasýdýr. copy() metoduyla kopyalanan da bu referanstýr, listenin kendisi deðil.
+
+
+ÝSÝM               NESNE
+ a ----------> [5, ... , 7.1]
+                    |
+                    -----------
+                              |
+
+                           [4,9,3]
+
+                              |
+                    -----------
+                    |
+ b ----------> [5, ... , 7.1]
+
+
+Derin seviyelerde kusursuz kopyalama yapabilmek için copy modülü içindeki deepcopy() fonksiyonunu kullanmak gerekir.
+
+import copy
+a = [5, [4,9,3], 7.1]
+b = copy.deepcopy(a)
+b[1][0] = "merhaba"
+print("a =",a)
+print("b =",b)
+|
+a = [5, [4, 9, 3], 7.1]
+b = [5, ['merhaba', 9, 3], 7.1]
+
+Bu sefer derin kopyalama yaptýðýmýz için, b‘de yaptýðýmýz hiç bir deðiþiklik artýk a‘ya yansýmýyor.
+
+
+
+
+L = [[1,2,3]]*4
+L
+|
+[[1, 2, 3], [1, 2, 3], [1, 2, 3], [1, 2, 3]]
+
+
+L[0][0] = "abc"
+L
+|
+[['abc', 2, 3], ['abc', 2, 3], ['abc', 2, 3], ['abc', 2, 3]]
+
+
+Bu davranýþýn sebebi liste elemanlarýnýn kendilerinin deðil referanslarýnýn kopyalanarak listeye konmasý. Nitekim is iþlemi ile kontrol ettiðimizde elemanlarýn ayný nesne olduðunu görüyoruz.
+
+L[0] is L[1]
+|
+True
+
+
+L ------> [..., ..., ..., ...]
+ 
+            |    |    |    |
+            ----------------
+                   |
+                [1,2,3]
+
+
+
+L = [copy.deepcopy(i) for i in [[1,2,3]]*4]
+L
+|
+[[1, 2, 3], [1, 2, 3], [1, 2, 3], [1, 2, 3]]
+
+
+L[0] is L[1]
+|
+False
+
+
+L[0][0]="abc"
+L
+|
+[['abc', 2, 3], [1, 2, 3], [1, 2, 3], [1, 2, 3]]

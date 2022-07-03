@@ -1,0 +1,41 @@
+Server bulacağız ve buffer overflow exploiti bu serverda yazacağız ve bunun üzerine denemeler yapacağız.
+
+vulnserver diye bir sistem var. 
+Birisi github'a yüklemiş.
+https://github.com/stephenbradshaw/vulnserver
+
+Bu buffer overflow açığı olan bir sunucu. Windows bunu bildiği için engelleyebilir. O yüzden defender'ı kapatacağız.
+Hedef makineye bunu Download ZIP diyip indireceğiz.
+
+
+Ayrıca yine hedef makineye immunity debugger isimli bir tersine mühendislik aracı yükleyeceğiz. 
+https://www.immunityinc.com/products/debugger/
+
+Buradan da bunu indireceğiz.
+
+
+Güvenliği falan kapatman gerek ama bu gerçek bir senaryo. Etik hackersın diyelim. Bir sistemde açık olduğunu test edeceksin. Sanal makinende istediğin gibi güvenlik önlemleriyle oynayabilirsin. Kendi Kali Linux makinenden bir programı hacklediğin takdirde zaten o programın yüklü olduğu bütün bilgisayarları da (ip numaralarını bilerek) hackleyebilirsin.
+
+
+vulnserver.exe'yi yönetici olarak çalıştırıyoruz. Bu bir sunucudur.
+
+ImmunityDebugger programını da yönetici olarak çalıştırmalıyım ki birbirlerini görsünler. O şekilde çalışıtırıyoruz.
+Debugger açılınca sol üstteki menüden File'dan Attach diyoruz ve vulnserver'ı seçiyoruz. Attach kısmında çalışan bütün işlemleri, işlemcideki bütün processleri görebilirsin ve ekleyebilirsin. Ekledikten sonra o programda neler olduğunu takip edebilirsin.
+vulnserver'ı attach ettikten sonra üstteki play üçgenine basman gerekiyor. Ona basınca sunucu durmadan buradaki işlemleri devam eder.
+
+Burada sol üstte assembly kodlarını görürüz; ne nereye gidiyor, hangi adreste vs.,
+       sol altta hex'e çevrilmiş halini görürüz, 
+       sağ üstte bazı registerları ve bazı önemli bilgileri göreceğiz, sunucu üzerinde hiçbir şey olmadığı için      (sunucuya daha bağlanmadık) ilk bir şey göremezsin.
+
+Hacker makineye gidelim.
+Terminale: nc -nv 10.0.2.15 9999  10.0.2.15 : windows ip'si, hedef ip 
+                                  9999 : çalıştığı port, dökümantasyonda verilir.
+Bunu yazıp çalıştırdığında sunucuya bağlanır.
+Daha bir şeyi hacklemedik. Hedefteki sunucu, ona bağlanılabilmesi için çalışıyor zaten.
+
+HELP yazınca dökümantasyon gösterir. Bunlar sunucuda çalıştırabileceğimiz bazı komutlardır.
+Örneğin STATS yazıp bir değer verdin mesela STATS 100 yazdın sana STATS VALUE NORMAL döndürür. 
+        RTIME 234 yazdın sana RTIME VALUE WITHIN LIMITS döndürür yani limitler içerisinde der.
+        TRUN 492304 yazdın sana TRUN COMPLETE döndürür.
+
+Çok işlevsel bir sunucu değil. Sadece bu komutları çalıştırmamız ve bize karşılığında çok güzel, evet doğru, çalışıyor, yaptıklarında problem yok diye bilgi vermesi normalde kullanılmayacak bir uygulama. Ancak bunu bir server'ı, bir sunucuyu simule ettiğini düşün. Sonuçta bir servis çalışıyor ve o servise bağlanabiliyoruz. O serviste bu komutların içerisinde bir sıkıntı olanı var mı, bu sıkıntı varsa neresinde var, nasıl kırabiliriz, çökerttikten sonra EBP'ye EIP'ye nasıl ulaşıp oraya bir adres belirtip oradan bir shell code çalıştırabiliriz, bunlar üzerine odaklanacağız.

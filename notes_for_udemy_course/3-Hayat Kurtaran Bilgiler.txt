@@ -1,0 +1,301 @@
+USEFUL METHODS
+||||||||||||||
+range() komutu sana yüksek sayýlara kadar tek tek yazmaman için kolaylýk saðlar. 
+
+list(range(20))
+-----s+e-------
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+
+for n in list(range(20)):
+    print(n)
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+
+
+for n in list(range(20)):
+    if n<5:
+        pass
+    else:
+        print(n)
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+
+for n in list(range(5,20)):
+    print(n)
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+
+***Step Size
+
+for n in list(range(20)):
+    if n<5:
+        pass
+    elif n%3==2:
+        print(n)
+    else:
+        pass
+5
+8
+11
+14
+17
+
+for n in list(range(5,20,3)):
+    print(n)
+5
+8
+11
+14
+17
+
+ENUMERATE
+|||||||||
+index=0
+for number in list(range(0,10)):
+    print(f"no:{number} ix:{index}")
+    index+=1
+no:0 ix:0 
+no:1 ix:1 
+no:2 ix:2 
+no:3 ix:3 
+no:4 ix:4 
+no:5 ix:5 
+no:6 ix:6 
+no:7 ix:7 
+no:8 ix:8 
+no:9 ix:9 
+
+index=0
+for number in list(range(5,15)):
+    print(f"no:{number} ix:{index}")
+    index+=1
+no:5 ix:0
+no:6 ix:1
+no:7 ix:2
+no:8 ix:3
+no:9 ix:4
+no:10 ix:5
+no:11 ix:6
+no:12 ix:7
+no:13 ix:8
+no:14 ix:9
+
+for item in enumerate(list(range(5,15))):
+    print(item)
+(0, 5)
+(1, 6)
+(2, 7)
+(3, 8)
+(4, 9)
+(5, 10)
+(6, 11)
+(7, 12)
+(8, 13)
+(9, 14)
+
+for (index,number) in enumerate(list(range(5,15))):
+    print(index)
+    print(number)
+0
+5
+1
+6
+2
+7
+3
+8
+4
+9
+5
+10
+6
+11
+7
+12
+8
+13
+9
+14
+
+
+**listem=range(20)
+  len(listem)--s+e-->20
+
+
+
+RANDOM
+||||||
+from random import randint----->Bu notebookun içerisine (yazdýðýn) bu satýrdan itibaren random'ýn randint diye bir kütüphanesini alýp koydu.
+
+random: Python ile gelen hazýr kütüphane.
+
+import: Bir modulü, halihazýrda yazýlmýþ python dosyasýný alýp kendi dosyamýzda, kodumuzda kullanmak istersek kullandýðýmýz komut.
+
+randint(0,1000)                            YANÝ VERDÝÐÝN
+971                                        ARALIKTA 
+                                           RASTGELE
+randint(0,1000)                            SAYILAR
+808                                        VERÝYOR.
+
+
+my_list=list(range(0,10))
+
+my_list
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+---from random import shuffle
+
+---shuffle(my_list)
+
+---my_list
+   [3, 2, 5, 6, 0, 4, 8, 9, 1, 7]
+
+
+ZIP
+|||
+Listeleri birleþtirir.
+
+sport_list=["run","swim","basketball"]
+calories_list=[100,200,300]
+day_list=["monday","tuesday","wednesday"]
+
+zip(sport_list,calories_list,day_list) 
+<zip at 0xd910296648>
+Kaydettim diyor.
+
+new_list=zip(sport_list,calories_list,day_list)
+
+new_list
+<zip at 0xd9103b7208>
+Yine bir çýktý vermedi. Ne olduðunu göremedik. Bilmediðin zip object verdi, liste vermedi. Sonra anlarsýn. 
+
+new_list=list(zip(sport_list,calories_list,day_list))
+
+new_list
+[('run', 100, 'monday'),
+ ('swim', 200, 'tuesday'),
+ ('basketball', 300, 'wednesday')]
+
+
+for element in new_list:
+    print(element)
+('run', 100, 'monday')
+('swim', 200, 'tuesday')
+('basketball', 300, 'wednesday')
+
+for a,b,c in new_list:
+    print(a)
+    print(b)
+    print(c)
+run
+100
+monday
+swim
+200
+tuesday
+basketball
+300
+wednesday
+
+
+for a,b,c in new_list:
+    if b%40==0:
+        print(b)
+200
+
+
+for a,b,c in new_list:
+    if c=="tuesday":
+        break
+    print(c)
+monday
+
+
+LIST ADVANCED
+|||||||||||||
+new_list=[]
+my_string="metallica"
+for element in my_string:
+    new_list.append(element)
+
+new_list --s+e--> ['m', 'e', 't', 'a', 'l', 'l', 'i', 'c', 'a']
+
+
+new_list_2=[element for element in my_string]
+
+new_list_2 --s+e--> ['m', 'e', 't', 'a', 'l', 'l', 'i', 'c', 'a']
+
+
+new_list_3=[number for number in list(range(0,10))]
+
+new_list_3 --s+e--> [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+new_list_4=[number**5 for number in list(range(0,10))]
+
+new_list_4 --s+e--> [0, 1, 32, 243, 1024, 3125, 7776, 16807, 32768, 59049]
+
+
+chaos=[[1,2],[3,4],[5,6]]
+b=[tek for köþeli in chaos for tek in köþeli]
+b --s+e--> [1,2,3,4,5,6]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

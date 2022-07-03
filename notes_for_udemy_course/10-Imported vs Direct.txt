@@ -1,0 +1,35 @@
+2 dosya oluþturduk: yoda ve anakin
+
+YODA
+----                                    
+def func_direct():                                           
+	print("yoda direct")
+
+def func_imported():
+	print("yoda imported")
+	
+if __name__ == "__main__":     #Eðer ki yoda.py çalýþtýrýldýðýnda kendi çalýþýyorsa:
+	func_direct()
+else:                          #Direkt çalýþtýrýlmazsa:
+	func_imported()
+
+
+Python if'li kýsmý otomatik olarak yapar. "yoda" çalýþtýrýldýðýnda __name__ deðiþkenine __main__'i eþitler.
+
+
+ANAKIN
+------
+import yoda
+print("anakin")
+
+
+python yoda.py
+|
+yoda direct
+
+python anakin.py
+|
+yoda imported
+anakin
+
+Böylece bir scripti kendimiz mi çalýþtýrýyoruz yoksa modül olarak mý çalýþtýrýyoruz bilerek istediðimiz gibi iþlem yapabiliriz.

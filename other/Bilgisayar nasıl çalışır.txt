@@ -1,0 +1,72 @@
+Bilgisayarlar elektrik akımının saniyede milyarlarca kez kesilip tekrar açılması yoluyla çalışır.
+Saniyedeki kapanıp açılma sayısı : frekans, birimi : Hertz (Hz)
+
+Bir iletkende yeterli miktarda elektrik enerjisi olması 1 ile, olmaması 0 ile gösterilir.
+Elektrik ileten telde oluşturulan bu voltaj değişimleri sayesinde bilgisayarlar veri gönderip alabilir.
+5 volta yakın değerler 1, 0 volta yakın değerler 0 olarak gösterilir. 
+
+Dijital ortamdaki tüm veriler (resimler, yazılar, sesler vb.) sayılardan oluşur.
+Bu sayılar 0 ve 1 şeklinde depolama ortamlarına kaydedilip okunabilirler.
+
+Klavyedeki her tuşun sayısal bir karşılığı vardır ve bilgisayar bu değeri tanır.
+Örneğin ASCII kod tablosuna göre A harfinin karşılığı 65 sayısıdır.
+
+Farenin tüm tuşlarının ve tekerleğinin de kendi sayısal değerleri vardır.
+
+Ekrandaki her noktanın (piksel) rengi de sayılarla belirtilir.
+
+Tüm renkler Kırmızı, Yeşil ve Mavi renk oranıyla ifade edilir.
+Her renk tonu için 8 bit (1 bayt) alan gerekir ve RGB 24 bit (3 bayt) uzunluğundadır.
+Alpha (saydamlık) bilgisi de eklenince RGBA formatı oluşur ve 32 bit (4 bayt) olur.
+Her ekran türünün farklı piksel geometrileri vardır ama görüntüde önemli bir fark yoktur.
+
+Ses dosyaları da sayılardan oluşur. Bu sayılar sesin oluşturduğu analog voltaj değişimlerinin sayısal gösterimidir.
+Ses titreşimleri mikrofon üzerinde elektriksel dalgalanmalar oluşturur.
+Mikrofon üzerindeki voltaj değerleri anlık olarak sayılara dönüştürülür.
+Ses hoparlöre gönderilirken ise bu sayılar tekrar elektriksel dalgalanmalara çevrilir.
+Örnekleme hızı saniyede kaç kez örnek alındığını belirtir, birimi Hertz (Hz)'dir.
+48000 (48 KHz) örnekleme hızıyla saniyede 48000 ölçüm yapılır.
+1 saniyelik sesin kaç bayt yer kaplayacağı kaydedilen formata göre değişir.
+PCM gibi ham veriler çok fazla, MP3 gibi sıkıştırılmış veriler ise çok az yer kaplar.
+
+Videolar ise görüntü ve ses dosyalarının birleştirilmesiyle oluşturulur.
+
+Tüm bu verilerin oluşturulması ve işlenmesi bilgisayar programları sayesinde yapılır.
+Programlar işlemcinin sırasıyla hangi işlemleri yapacağını belirten verilerdir.
+
+İşlemcinin çalıştıracağı program önce RAM'e yüklenir.
+Bilgisayar ilk açıldığında ROM bellek BIOS yazılımını RAM üzerine yükler ve işlemciyi başlatır.
+BIOS yazılımı da hard diskin ilk sektörünü RAM belleğe yazar ve başlatır.
+Bu sektör 512 bayt uzunluğundadır ve işletim sisteminin ilk parçasıdır.
+BIOS işletim sistemlerini 512 baytlık ilk sektörün sonundaki 2 bayttan (16 tabanında 55 ve AA) tanır.
+Hard diskte birden fazla işletim sistemi yüklüyse yüklendiği sürücünün ilk 512 baytında kendi bootloader (ön yükleyici) bölümü bulunur ve bu işletim sisteminin başlatır. 
+İşletim sistemi, anakarta bağlı tüm cihazların sürücülerini RAM belleğe yükler. 
+Sonrasında gerekli hizmet ve uygulamaları RAM belleğe yükler ve başlatır.
+Bir uygulamayı çalıştırdığınızda işletim sistemi onu RAM belleğe yükler ve başlatır.
+
+Programları işlemci çalıştırır.
+İşlemci sadece makine dilinden anlar.
+İnsanlar için makine dilinden anlamak çok zordur. O yüzden sayıların yerine mnemonic denilen kelimeler kullanılır.
+Program kodları bu dille yazılır ve derlenerek sayılara dönüştürülür.
+Makine diline en yakın programlama dili : ASSEMBLY.
+Assembly komutları işlemci komutlarına (opcode) kolayca dönüştürür.
+Assembly makine dilinden kolaydır ama insan diline yakın değildir. Bu yüzden C gibi diller geliştirilmiştir.
+C kodları önce Assembly koduna, sonra da makine kodlarına çevrilir.
+
+Her işlemci üreticisi işlemcinin yapabileceği işlemlerin listesini sitesinde yayınlar.
+Bu işlem kodlarına kısaca opcode (operation code) denir.
+Tüm bu komutların listesi de instuction set olarak adlandırılır.
+
+Programlar derleyici (assembler) yardımıyla sayılara, yani makine diline çevrilir.
+
+RAM üzerindeki veri alanlarına işlemci adresler yoluyla erişir.
+İşlemciye RAM üzerinde bir komutun adresi bildirildiğinde buradan çalışmaya başlar. 
+
+İşlemci yapısında: milyonlarca transistör,
+                   işlem komutlarının yürütülmesini denetleyen kontrol ünitesi,
+                   mantıksal ve matematiksel işlemleri yapan Aritmetik Mantık Ünitesi (ALU),
+                   verileri geçici olarak saklayan kaydediciler (Register),
+                   bellek erişimini kolaylaştıran bellek yönetimi ünitesi bulunur.
+
+İşlemci anakart üzerindeki tüm donanımlarla sürekli etkileşim halindedir.
+Grafik, ses ve ethernet kartları gibi ana karta direkt bağlı devrelerden USB portlarına takılıp çıkarılabilen cihazlara kadar.
